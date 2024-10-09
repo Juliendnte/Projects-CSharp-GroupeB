@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Id": 1,
+    "Text": "Quelle est la capitale de la France?",
+    "Options": ["Paris", "Londres", "Berlin", "Madrid"],
+    "CorrectAnswer": "Paris"
+  },
+  {
+    "Id": 2,
+    "Text": "Quelle est la langue officielle du Canada?",
+    "Options": ["Français", "Anglais", "Espagnol", "Allemand"],
+    "CorrectAnswer": "Anglais"
+  }
+]
