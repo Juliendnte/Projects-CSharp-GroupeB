@@ -1,0 +1,50 @@
+﻿@model List<ProjectsSharp.Models.Question>
+
+<h1>Questions</h1>
+
+@foreach (var question in Model)
+{
+    <div>
+        <h2>@question.Text</h2>
+        <ul>
+            @foreach (var option in question.Options)
+            {
+                <li>
+                    <button data-id="@question.Id-@option.Replace(" ", "")" onclick="submitOption('@question.Id', '@option')">@option</button>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+@Html.AntiForgeryToken()
+
+<script>
+    function submitOption(questionId, selectedOption) {
+
+        fetch('/Questions/SubmitOption', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value 
+            },
+            body: JSON.stringify({ questionId: questionId, selectedOption: selectedOption })
+        })
+            .then(response => response.json())
+            .then(data => {
+                const button = document.querySelector(`button[data-id="${questionId}-${selectedOption.replace(/\s+/g, '')}"]`);
+                if (button) {
+                    if (data.correct === true) {
+                        button.classList.toggle('true');
+                    } else {
+                        button.classList.toggle('false');
+                    }
+                } else {
+                    console.error('Bouton non trouvé');
+                }  
+             })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+    }
+</script>
