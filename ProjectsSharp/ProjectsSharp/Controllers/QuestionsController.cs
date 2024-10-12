@@ -14,8 +14,15 @@ public class QuestionsController : Controller
 
     public IActionResult Index()
     {
-        var questions = _questionService.GetQuestions();
-        return View(questions); 
+        try
+        {
+            var questions = _questionService.GetRandomQuestion();
+            return View(questions); 
+        }
+        catch (Exception)
+        {
+            return View();
+        }
     }
     
     [HttpPost]
@@ -32,6 +39,13 @@ public class QuestionsController : Controller
     {
         public int QuestionId { get; set; }
         public string SelectedOption { get; set; }
+    }
+    
+    [HttpPost]
+    public IActionResult ResetQuestions()
+    {
+        _questionService.ResetQuestions();
+        return Ok();
     }
 
 }

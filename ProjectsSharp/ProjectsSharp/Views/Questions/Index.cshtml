@@ -1,48 +1,78 @@
-﻿@model List<ProjectsSharp.Models.Question>
+﻿@model ProjectsSharp.Models.Question
 
-<h1>Questions</h1>
+<h1>Question</h1>
 
-@foreach (var question in Model)
-{
+    @if (Model == null)
+    {
+        <h2>Fin du questionnaire</h2>
+        <div>
+            <button onclick="resetQuestions();">Recommencer</button>
+        </div>
+    }
+    else
+    {
     <div>
-        <h2>@question.Text</h2>
+        <h2>@Model.Text</h2>
         <ul>
-            @foreach (var option in question.Options)
+            @foreach (var option in Model.Options)
             {
                 <li>
-                    <button data-id="@question.Id-@option.Replace(" ", "")" onclick="submitOption('@question.Id', '@option')">@option</button>
+                    <button data-id="@Model.Id-@option.Replace(" ", "")" onclick="submitOption('@Model.Id', '@option.Replace(" ", "")')">@option</button>
                 </li>
             }
         </ul>
     </div>
-}
+    <div>
+        <button onclick="window.location.reload();">Suivant</button>
+    </div>
+    }
+
 
 @Html.AntiForgeryToken()
 
 <script>
     function submitOption(questionId, selectedOption) {
-
         fetch('/Questions/SubmitOption', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value 
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
             },
             body: JSON.stringify({ questionId: questionId, selectedOption: selectedOption })
         })
             .then(response => response.json())
             .then(data => {
-                const button = document.querySelector(`button[data-id="${questionId}-${selectedOption.replace(/\s+/g, '')}"]`);
+                const button = document.querySelector(`button[data-id="${questionId}-${selectedOption}"]`);
                 if (button) {
                     if (data.correct === true) {
-                        button.classList.toggle('true');
+                        button.classList.add('true');
+                        button.classList.remove('false');
                     } else {
-                        button.classList.toggle('false');
+                        button.classList.add('false');
+                        button.classList.remove('true');
                     }
                 } else {
                     console.error('Bouton non trouvé');
-                }  
-             })
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+    }
+
+    function resetQuestions() {
+        fetch('/Questions/ResetQuestions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } 
+            })
             .catch(error => {
                 console.error('Erreur:', error);
             });

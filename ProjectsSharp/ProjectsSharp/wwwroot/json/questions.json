@@ -1,14 +1,142 @@
 ﻿[
   {
     "Id": 1,
-    "Text": "Quelle est la capitale de la France?",
-    "Options": ["Paris", "Londres", "Berlin", "Madrid"],
-    "CorrectAnswer": "Paris"
+    "Text": "Quelle est la capitale de l'Allemagne?",
+    "Options": ["Berlin", "Munich", "Hambourg", "Francfort"],
+    "CorrectAnswer": "Berlin",
+    "Niveau": 1
   },
   {
     "Id": 2,
-    "Text": "Quelle est la langue officielle du Canada?",
-    "Options": ["Français", "Anglais", "Espagnol", "Allemand"],
-    "CorrectAnswer": "Anglais"
+    "Text": "Quel est le plus grand océan du monde?",
+    "Options": ["Océan Atlantique", "Océan Pacifique", "Océan Indien", "Océan Arctique"],
+    "CorrectAnswer": "Océan Pacifique",
+    "Niveau": 1
+  },
+  {
+    "Id": 3,
+    "Text": "Qui a développé le langage de programmation Python?",
+    "Options": ["James Gosling", "Guido van Rossum", "Dennis Ritchie", "Bjarne Stroustrup"],
+    "CorrectAnswer": "Guido van Rossum",
+    "Niveau": 2
+  },
+  {
+    "Id": 4,
+    "Text": "Quelle est la capitale de l'Italie?",
+    "Options": ["Rome", "Venise", "Milan", "Naples"],
+    "CorrectAnswer": "Rome",
+    "Niveau": 1
+  },
+  {
+    "Id": 5,
+    "Text": "En quelle année a été inventé le World Wide Web?",
+    "Options": ["1989", "1991", "1995", "2000"],
+    "CorrectAnswer": "1989",
+    "Niveau": 2
+  },
+  {
+    "Id": 6,
+    "Text": "Quelle est la plus haute montagne du monde?",
+    "Options": ["Mont Everest", "Mont Blanc", "Mont Kilimandjaro", "Mont McKinley"],
+    "CorrectAnswer": "Mont Everest",
+    "Niveau": 1
+  },
+  {
+    "Id": 7,
+    "Text": "Quelle est la commande pour cloner un dépôt Git?",
+    "Options": ["git clone", "git pull", "git push", "git commit"],
+    "CorrectAnswer": "git clone",
+    "Niveau": 3
+  },
+  {
+    "Id": 8,
+    "Text": "Quelle est la monnaie utilisée au Japon?",
+    "Options": ["Dollar", "Yuan", "Yen", "Won"],
+    "CorrectAnswer": "Yen",
+    "Niveau": 1
+  },
+  {
+    "Id": 9,
+    "Text": "En quelle année Linux a-t-il été créé?",
+    "Options": ["1989", "1991", "1995", "2000"],
+    "CorrectAnswer": "1991",
+    "Niveau": 2
+  },
+  {
+    "Id": 10,
+    "Text": "Quel pays est le plus grand par superficie?",
+    "Options": ["Canada", "Chine", "Russie", "États-Unis"],
+    "CorrectAnswer": "Russie",
+    "Niveau": 1
+  },
+  {
+    "Id": 11,
+    "Text": "Quel est le langage utilisé pour créer des pages web?",
+    "Options": ["HTML", "C#", "Java", "Python"],
+    "CorrectAnswer": "HTML",
+    "Niveau": 2
+  },
+  {
+    "Id": 12,
+    "Text": "Quel est le plus grand désert du monde?",
+    "Options": ["Désert du Sahara", "Désert d'Atacama", "Désert de Gobi", "Antarctique"],
+    "CorrectAnswer": "Antarctique",
+    "Niveau": 1
+  },
+  {
+    "Id": 13,
+    "Text": "Quel est le fondateur de Microsoft?",
+    "Options": ["Steve Jobs", "Bill Gates", "Elon Musk", "Jeff Bezos"],
+    "CorrectAnswer": "Bill Gates",
+    "Niveau": 2
+  },
+  {
+    "Id": 14,
+    "Text": "Quel est l'élément chimique dont le symbole est O?",
+    "Options": ["Or", "Oxygène", "Os", "Osmium"],
+    "CorrectAnswer": "Oxygène",
+    "Niveau": 1
+  },
+  {
+    "Id": 15,
+    "Text": "Quel protocole est utilisé pour sécuriser les sites web?",
+    "Options": ["HTTP", "FTP", "HTTPS", "SMTP"],
+    "CorrectAnswer": "HTTPS",
+    "Niveau": 3
+  },
+  {
+    "Id": 16,
+    "Text": "Quelle planète est la plus proche du Soleil?",
+    "Options": ["Vénus", "Terre", "Mars", "Mercure"],
+    "CorrectAnswer": "Mercure",
+    "Niveau": 1
+  },
+  {
+    "Id": 17,
+    "Text": "Quel langage est principalement utilisé pour les bases de données relationnelles?",
+    "Options": ["SQL", "PHP", "C++", "Ruby"],
+    "CorrectAnswer": "SQL",
+    "Niveau": 3
+  },
+  {
+    "Id": 18,
+    "Text": "Quel navigateur web a été créé par Google?",
+    "Options": ["Firefox", "Safari", "Chrome", "Opera"],
+    "CorrectAnswer": "Chrome",
+    "Niveau": 2
+  },
+  {
+    "Id": 19,
+    "Text": "En quelle année l'Homme a-t-il marché sur la Lune pour la première fois?",
+    "Options": ["1965", "1969", "1972", "1975"],
+    "CorrectAnswer": "1969",
+    "Niveau": 1
+  },
+  {
+    "Id": 20,
+    "Text": "Quel est le langage principal utilisé pour les applications iOS?",
+    "Options": ["Swift", "Java", "C#", "Kotlin"],
+    "CorrectAnswer": "Swift",
+    "Niveau": 3
   }
 ]

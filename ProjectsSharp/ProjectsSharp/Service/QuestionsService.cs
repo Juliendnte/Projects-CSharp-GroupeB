@@ -7,15 +7,43 @@ using Models;
 public class QuestionService
 {
     private const string JsonFilePath = "wwwroot/json/questions.json"; // Path to the json file
-
+    private List<int> _Questions { get; } = new List<int>();
     /**
      * GetQuestions method reads the json file and deserializes it into a list of Question objects
      * @return List<Question> - List of Question objects
      */
-    public List<Question> GetQuestions() 
+    private List<Question> GetQuestions() 
     {
         var jsonString = File.ReadAllText(JsonFilePath);
         return JsonSerializer.Deserialize<List<Question>>(jsonString);
+    }
+    
+    /**
+     * GetRandomQuestion method returns a random question from the list of questions
+     * @return Question - A random question
+     */
+    public Question GetRandomQuestion()
+    {
+        var questions = GetQuestions();
+
+        if (questions == null || questions.Count == 0 || (_Questions != null && questions.Count == _Questions.Count))
+            throw new InvalidOperationException("No questions available.");
+    
+        var question = questions[0];
+
+        if (_Questions != null)
+        {
+            do
+            {
+                var random = new Random();
+
+                question = questions[random.Next(questions.Count)];
+            } while (_Questions.Contains(question.Id));
+        }
+        
+        _Questions.Add(question.Id);
+        
+        return question;
     }
     
     /**
@@ -28,6 +56,11 @@ public class QuestionService
     {
         var questions = GetQuestions();
         var question = questions.FirstOrDefault(q => q.Id == questionId);
-        return question?.CorrectAnswer == answer;
+        return question?.CorrectAnswer.Replace(" ", "") == answer;
+    }
+    
+    public void  ResetQuestions()
+    {
+        _Questions.Clear();
     }
 }
