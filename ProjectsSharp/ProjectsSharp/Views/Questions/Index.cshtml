@@ -30,6 +30,7 @@
 
 @Html.AntiForgeryToken()
 
+<!--<script src="js/questions.js"></script>-->
 <script>
     function submitOption(questionId, selectedOption) {
         fetch('/Questions/SubmitOption', {
@@ -42,18 +43,7 @@
         })
             .then(response => response.json())
             .then(data => {
-                const button = document.querySelector(`button[data-id="${questionId}-${selectedOption}"]`);
-                if (button) {
-                    if (data.correct === true) {
-                        button.classList.add('true');
-                        button.classList.remove('false');
-                    } else {
-                        button.classList.add('false');
-                        button.classList.remove('true');
-                    }
-                } else {
-                    console.error('Bouton non trouvé');
-                }
+                document.querySelector(`button[data-id="${questionId}-${selectedOption}"]`).classList.add(data.correct);
             })
             .catch(error => {
                 console.error('Erreur:', error);
@@ -68,13 +58,13 @@
                 'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
             }
         })
-            .then(response => {
-                if (response.ok) {
-                    window.location.reload();
-                } 
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-            });
+        .then(response => {
+            if (response.ok) {
+                window.location.reload();
+            } 
+        })
+        .catch(error => {
+             console.error('Erreur:', error);
+        });
     }
 </script>

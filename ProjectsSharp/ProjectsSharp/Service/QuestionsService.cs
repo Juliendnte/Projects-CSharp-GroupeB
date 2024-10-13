@@ -59,7 +59,7 @@ public class QuestionService
         return question?.CorrectAnswer.Replace(" ", "") == answer;
     }
     
-    public void  ResetQuestions()
+    public void ResetQuestions()
     {
         _Questions.Clear();
     }
