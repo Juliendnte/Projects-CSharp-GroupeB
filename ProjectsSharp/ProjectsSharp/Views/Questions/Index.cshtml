@@ -11,19 +11,21 @@
     }
     else
     {
-    <div>
-        <h2>@Model.Text</h2>
-        <ul>
-            @foreach (var option in Model.Options)
-            {
-                <li>
-                    <button data-id="@Model.Id-@option.Replace(" ", "")" onclick="submitOption('@Model.Id', '@option.Replace(" ", "")')">@option</button>
-                </li>
-            }
-        </ul>
-    </div>
-    <div>
-        <button onclick="window.location.reload();">Suivant</button>
+        <div>
+            <h2>@Model.Text</h2>
+            <ul>
+                @foreach (var option in Model.Options)
+                {
+                    <li>
+                        <button data-id="@Model.Id-@option.Replace(" ", "")" onclick="submitOption('@Model.Id', '@option.Replace(" ", "")')" >@option</button>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div>
+            <h3>Score: <span id="score"></span></h3>
+        </div>
+    <div id="next">
     </div>
     }
 
