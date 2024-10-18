@@ -8,6 +8,7 @@ public class QuestionService
 {
     private const string JsonFilePath = "wwwroot/json/questions.json"; // Path to the json file
     private List<int> _Questions { get; } = new List<int>();
+    public int Score { get; set; }
     /**
      * GetQuestions method reads the json file and deserializes it into a list of Question objects
      * @return List<Question> - List of Question objects
@@ -52,11 +53,13 @@ public class QuestionService
      * @param string answer - The answer provided by the user
      * @return bool - True if the answer is correct, false otherwise
      */
-    public bool CheckIsCorrectAnswer(int questionId, string answer)
+    public (bool, string) CheckIsCorrectAnswer(int questionId, string answer)
     {
         var questions = GetQuestions();
         var question = questions.FirstOrDefault(q => q.Id == questionId);
-        return question?.CorrectAnswer.Replace(" ", "") == answer;
+        bool win = question?.CorrectAnswer.Replace(" ", "") == answer;
+        Score += win ? question.Niveau : -question.Niveau;
+        return (win, question?.CorrectAnswer.Replace(" ", ""));
     }
     
     public void ResetQuestions()

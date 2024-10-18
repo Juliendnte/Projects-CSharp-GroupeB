@@ -24,15 +24,18 @@ public class QuestionsController : Controller
             return View();
         }
     }
+
+    [HttpGet]
+    public JsonResult GetScore()
+    {
+        return Json(new {score = _questionService.Score});
+    }
     
     [HttpPost]
     public JsonResult SubmitOption([FromBody] AnswerModel answer)
     {
-        // Traiter la réponse
-        bool isCorrect = _questionService.CheckIsCorrectAnswer(answer.QuestionId, answer.SelectedOption);
-
-        // Retourner une réponse en JSON
-        return Json(new { success = true, correct = isCorrect });
+        var Correct = _questionService.CheckIsCorrectAnswer(answer.QuestionId, answer.SelectedOption);
+        return Json(new { success = true, correct = Correct.Item1, correctAnswer = Correct.Item2 });
     }
 
     public class AnswerModel
@@ -45,6 +48,7 @@ public class QuestionsController : Controller
     public IActionResult ResetQuestions()
     {
         _questionService.ResetQuestions();
+        _questionService.Score = 0;
         return Ok();
     }
 
