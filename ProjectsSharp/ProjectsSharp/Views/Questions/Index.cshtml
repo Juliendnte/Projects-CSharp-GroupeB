@@ -1,0 +1,33 @@
+﻿@model ProjectsSharp.Models.Question
+
+<h1>Question</h1>
+
+    @if (Model == null)
+    {
+        <h2>Fin du questionnaire</h2>
+        <div>
+            <button onclick="resetQuestions();">Recommencer</button>
+        </div>
+    }
+    else
+    {
+    <div>
+        <h2>@Model.Text</h2>
+        <ul>
+            @foreach (var option in Model.Options)
+            {
+                <li>
+                    <button data-id="@Model.Id-@option.Replace(" ", "")" onclick="submitOption('@Model.Id', '@option.Replace(" ", "")')">@option</button>
+                </li>
+            }
+        </ul>
+    </div>
+    <div>
+        <button onclick="window.location.reload();">Suivant</button>
+    </div>
+    }
+
+
+@Html.AntiForgeryToken()
+
+<script src="js/questions.js"></script>
