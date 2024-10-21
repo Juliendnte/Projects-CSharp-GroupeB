@@ -1,0 +1,13 @@
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\bin\Debug\WeatherApp.exe.config
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\bin\Debug\WeatherApp.exe
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\bin\Debug\WeatherApp.pdb
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\obj\Debug\WeatherApp.csproj.AssemblyReference.cache
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\obj\Debug\WeatherApp.Form1.resources
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\obj\Debug\WeatherApp.Properties.Resources.resources
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.cache
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\obj\Debug\WeatherApp.csproj.Up2Date
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\obj\Debug\WeatherApp.exe
+C:\Users\ademv\OneDrive\Documents\Ynov-B2\C#\Projects-CSharp-GroupeB\WeatherApp\obj\Debug\WeatherApp.pdb
