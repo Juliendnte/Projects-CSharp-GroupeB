@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 
 builder.Services.AddSingleton<QuestionService>();
+builder.Services.AddSingleton<TicTacToeService>();
 
 var app = builder.Build();
 

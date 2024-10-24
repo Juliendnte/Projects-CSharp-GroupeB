@@ -2,16 +2,17 @@ namespace ProjectsSharp.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Service;
 
 [ApiController]
 [Route("api/[controller]")]
 public class TicTacToeController : Controller
 {
-    private readonly TicTacToeService _service;
+    private readonly TicTacToeService _morpionService;
 
-    public TicTacToeController(TicTacToeService Morpionservice)
+    public TicTacToeController(TicTacToeService morpionservice)
     {
-        _service = Morpionservice;
+        _morpionService = morpionservice;
     }
 
     public IActionResult Index()
@@ -22,7 +23,7 @@ public class TicTacToeController : Controller
     [HttpGet("new")]
     public IActionResult StartNewGame()
     {
-        var game = _service.StartNewGame();
+        var game = new TicTacToeGame();
         return Ok(game);
     }
 
@@ -30,7 +31,7 @@ public class TicTacToeController : Controller
     public ActionResult<JsonResult> MakeMove([FromBody] MoveRequest request)
     {
         var game = request.Game;
-        if (_service.MakeMove(game, request.Row, request.Col))
+        if (_morpionService.MakeMove(game, request.Row, request.Col))
         {
             return Ok(game);
         }

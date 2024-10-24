@@ -1,12 +1,9 @@
-using ProjectsSharp.Models;
+namespace ProjectsSharp.Service;
+
+using Models;
 
 public class TicTacToeService
 {
-    public TicTacToeGame StartNewGame()
-    {
-        return new TicTacToeGame();
-    }
-
     public bool MakeMove(TicTacToeGame game, int row, int col)
     {
         if (game.Board[row, col] == '\0' && !game.IsGameOver)
