@@ -1,0 +1,47 @@
+@model ProjectsSharp.Models.TicTacToeGame
+
+@{
+    ViewData["Title"] = "Morpion";
+}
+    <h1>Tic Tac Toe</h1>
+    <div id="game-board"></div>
+    <div id="controls">
+        <button onclick="startNewGame()">Start New Game</button>
+    </div>
+    <script>
+        let game;
+
+        async function startNewGame() {
+            const response = await fetch('/api/tictactoe/new');
+            game = await response.json();
+            renderBoard();
+        }
+
+        async function makeMove(row, col) {
+            const response = await fetch('/api/tictactoe/move', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ game, row, col })
+            });
+            game = await response.json();
+            renderBoard();
+        }
+
+        function renderBoard() {
+            const board = document.getElementById('game-board');
+            board.innerHTML = '';
+            for (let row = 0; row < 3; row++) {
+                for (let col = 0; col < 3; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.textContent = game.board[row][col] || '';
+                    cell.onclick = () => makeMove(row, col);
+                    board.appendChild(cell);
+                }
+            }
+        }
+
+        startNewGame();
+    </script>
