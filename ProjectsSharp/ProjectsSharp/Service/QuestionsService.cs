@@ -32,17 +32,16 @@ public class QuestionService
     
         var question = questions[0];
 
-        if (_Questions != null)
-        {
-            do
-            {
-                var random = new Random();
-
-                question = questions[random.Next(questions.Count)];
-            } while (_Questions.Contains(question.Id));
+        if (_Questions == null) {
+            return question;
         }
         
-        _Questions.Add(question.Id);
+        do
+        {
+            var random = new Random();
+
+            question = questions[random.Next(questions.Count)];
+        } while (_Questions.Contains(question.Id));
         
         return question;
     }
@@ -58,6 +57,7 @@ public class QuestionService
         var questions = GetQuestions();
         var question = questions.FirstOrDefault(q => q.Id == questionId);
         bool win = question?.CorrectAnswer.Replace(" ", "") == answer;
+        _Questions.Add(question.Id);
         Score += win ? question.Niveau : -question.Niveau;
         return (win, question?.CorrectAnswer.Replace(" ", ""));
     }

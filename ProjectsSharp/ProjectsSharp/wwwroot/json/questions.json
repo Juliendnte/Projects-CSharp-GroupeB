@@ -1,0 +1,142 @@
+﻿[
+  {
+    "Id": 1,
+    "Text": "Quelle est la fonction principale du protocole HTTP?",
+    "Options": ["Transfert de fichiers", "Accès distant", "Gestion des adresses IP", "Communication web"],
+    "CorrectAnswer": "Communication web",
+    "Niveau": 1
+  },
+  {
+    "Id": 2,
+    "Text": "Qu'est-ce qu'une base de données relationnelle?",
+    "Options": ["Un stockage de fichiers", "Une table de correspondances", "Un système de gestion de données structurées", "Un réseau de serveurs"],
+    "CorrectAnswer": "Un système de gestion de données structurées",
+    "Niveau": 1
+  },
+  {
+    "Id": 3,
+    "Text": "Quel langage de programmation est souvent utilisé pour le développement web côté client?",
+    "Options": ["Python", "C++", "JavaScript", "SQL"],
+    "CorrectAnswer": "JavaScript",
+    "Niveau": 1
+  },
+  {
+    "Id": 4,
+    "Text": "Qui est l'inventeur du World Wide Web?",
+    "Options": ["Alan Turing", "Bill Gates", "Tim Berners-Lee", "Mark Zuckerberg"],
+    "CorrectAnswer": "Tim Berners-Lee",
+    "Niveau": 1
+  },
+  {
+    "Id": 5,
+    "Text": "Quelle est la différence entre HTTP et HTTPS?",
+    "Options": ["HTTPS est plus rapide", "HTTP est sécurisé, HTTPS ne l'est pas", "HTTPS est chiffré", "Ils sont identiques"],
+    "CorrectAnswer": "HTTPS est chiffré",
+    "Niveau": 1
+  },
+  {
+    "Id": 6,
+    "Text": "En Python, que fait la méthode append()?",
+    "Options": ["Supprime un élément d'une liste", "Ajoute un élément à la fin d'une liste", "Tri une liste", "Remplace un élément dans une liste"],
+    "CorrectAnswer": "Ajoute un élément à la fin d'une liste",
+    "Niveau": 2
+  },
+  {
+    "Id": 7,
+    "Text": "Quel est le but de l'algorithme de tri rapide (Quicksort)?",
+    "Options": ["Trier une liste de manière efficace", "Trouver le plus petit élément", "Rechercher un élément dans une liste", "Compresser des données"],
+    "CorrectAnswer": "Trier une liste de manière efficace",
+    "Niveau": 2
+  },
+  {
+    "Id": 8,
+    "Text": "Quel type de données est majoritairement utilisé pour les analyses en Big Data?",
+    "Options": ["Texte brut", "Images", "Données structurées", "Données non structurées"],
+    "CorrectAnswer": "Données non structurées",
+    "Niveau": 2
+  },
+  {
+    "Id": 9,
+    "Text": "Quel est le rôle d'une fonction récursive?",
+    "Options": ["Appeler d'autres fonctions", "S'auto-appeler", "Exécuter une seule fois", "Interrompre un programme"],
+    "CorrectAnswer": "S'auto-appeler",
+    "Niveau": 2
+  },
+  {
+    "Id": 10,
+    "Text": "Quelle est la complexité en temps moyenne de l'algorithme de tri par insertion?",
+    "Options": ["O(log n)", "O(n)", "O(n^2)", "O(n log n)"],
+    "CorrectAnswer": "O(n^2)",
+    "Niveau": 3
+  },
+  {
+    "Id": 11,
+    "Text": "Quel langage est souvent utilisé pour les scripts de machine learning?",
+    "Options": ["Ruby", "Python", "C#", "HTML"],
+    "CorrectAnswer": "Python",
+    "Niveau": 3
+  },
+  {
+    "Id": 12,
+    "Text": "Quelle commande Git permet de voir les modifications d'un fichier?",
+    "Options": ["git log", "git status", "git diff", "git reset"],
+    "CorrectAnswer": "git diff",
+    "Niveau": 2
+  },
+  {
+    "Id": 13,
+    "Text": "Qu'est-ce que Docker permet de faire?",
+    "Options": ["Créer des machines virtuelles", "Développer des applications mobiles", "Conteneuriser des applications", "Tester le code en ligne"],
+    "CorrectAnswer": "Conteneuriser des applications",
+    "Niveau": 3
+  },
+  {
+    "Id": 14,
+    "Text": "Quel est le rôle principal du protocole DNS?",
+    "Options": ["Transférer des fichiers", "Gérer les connexions Wi-Fi", "Résoudre les noms de domaine en adresses IP", "Sécuriser les connexions"],
+    "CorrectAnswer": "Résoudre les noms de domaine en adresses IP",
+    "Niveau": 2
+  },
+  {
+    "Id": 15,
+    "Text": "Qu'est-ce qu'une API RESTful?",
+    "Options": ["Une bibliothèque de code", "Un type de service web", "Une application mobile", "Un serveur de base de données"],
+    "CorrectAnswer": "Un type de service web",
+    "Niveau": 2
+  },
+  {
+    "Id": 16,
+    "Text": "En programmation, que signifie le principe DRY?",
+    "Options": ["Développement Réactif", "Don't Repeat Yourself", "Dynamic Resources Yield", "Design Ready Yield"],
+    "CorrectAnswer": "Don't Repeat Yourself",
+    "Niveau": 3
+  },
+  {
+    "Id": 17,
+    "Text": "Quel outil est couramment utilisé pour la CI/CD?",
+    "Options": ["GitHub Actions", "MS Word", "Photoshop", "Google Drive"],
+    "CorrectAnswer": "GitHub Actions",
+    "Niveau": 3
+  },
+  {
+    "Id": 18,
+    "Text": "Qu'est-ce qu'un conteneur en informatique?",
+    "Options": ["Un type de base de données", "Un programme pour sécuriser le réseau", "Une unité de déploiement d'application isolée", "Un dispositif pour protéger l'ordinateur"],
+    "CorrectAnswer": "Une unité de déploiement d'application isolée",
+    "Niveau": 3
+  },
+  {
+    "Id": 19,
+    "Text": "Quelle est la différence entre une API REST et une API SOAP?",
+    "Options": ["SOAP est plus rapide", "REST utilise principalement JSON, SOAP XML", "REST est propriétaire", "SOAP est basé sur HTTP uniquement"],
+    "CorrectAnswer": "REST utilise principalement JSON, SOAP XML",
+    "Niveau": 3
+  },
+  {
+    "Id": 20,
+    "Text": "Quelle est la commande pour supprimer un fichier en ligne de commande sous Linux?",
+    "Options": ["remove", "delete", "rm", "del"],
+    "CorrectAnswer": "rm",
+    "Niveau": 2
+  }
+]
