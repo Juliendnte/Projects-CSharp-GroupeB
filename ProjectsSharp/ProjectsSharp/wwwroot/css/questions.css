@@ -1,9 +1,38 @@
-﻿.true{
+﻿button.true{
     color: green;
-    background-color: lightgreen;
+    background-color: lightgreen !important;
 }
 
-.false{
+button.false{
     color: red;
-    background-color: lightcoral;
+    background-color: lightcoral !important;
+}
+
+li{
+    list-style: none;
+}
+
+.question{
+    padding-left: 60px;
+    width: 570px;
+    height: 100px;
+}
+
+.questions{
+    margin-top: 75px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.titre{
+    display: flex;
+    justify-content: center;
+}
+
+.score{
+    position: absolute;
+    top: 0;
+    right: 0;
 }

@@ -36,3 +36,23 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+main{
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.container-mess{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.foot{
+  padding-top: 40px;
+}

@@ -1,6 +1,9 @@
 ﻿@model ProjectsSharp.Models.Question
-
-<h1>Question</h1>
+@{
+    ViewData["Title"] = "Quizz App";
+}
+<div>
+    <h1>Question</h1>
 
     @if (Model == null)
     {
@@ -12,12 +15,16 @@
     else
     {
         <div>
-            <h2>@Model.Text</h2>
-            <ul>
+            <h2 class="titre">@Model.Text</h2>
+            <ul class="questions">
                 @foreach (var option in Model.Options)
                 {
                     <li>
-                        <button data-id="@Model.Id-@option.Replace(" ", "")" onclick="submitOption('@Model.Id', '@option.Replace(" ", "")')" >@option</button>
+                        <button class="question"
+                                data-id="@Model.Id-@option.Replace(" ", "").Replace("'", "&apos;")"
+                                onclick="submitOption('@Model.Id', '@option.Replace(" ", "").Replace("'", "&apos;")')">
+                            @option
+                        </button>
                     </li>
                 }
             </ul>
@@ -25,9 +32,11 @@
     <div id="next">
     </div>
     }
-    <div>
+    <div class="score">
         <h3>Score: <span id="score"></span></h3>
     </div>
+    
+</div>
 
 
 @Html.AntiForgeryToken()

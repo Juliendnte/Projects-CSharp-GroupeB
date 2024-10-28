@@ -34,8 +34,8 @@ public class QuestionsController : Controller
     [HttpPost]
     public JsonResult SubmitOption([FromBody] AnswerModel answer)
     {
-        var Correct = _questionService.CheckIsCorrectAnswer(answer.QuestionId, answer.SelectedOption);
-        return Json(new { success = true, correct = Correct.Item1, correctAnswer = Correct.Item2 });
+        var correct = _questionService.CheckIsCorrectAnswer(answer.QuestionId, answer.SelectedOption);
+        return Json(new { success = true, correct = correct.Item1, correctAnswer = correct.Item2 });
     }
 
     public class AnswerModel

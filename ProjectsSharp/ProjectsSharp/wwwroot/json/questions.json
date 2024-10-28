@@ -1,142 +1,142 @@
 ﻿[
   {
     "Id": 1,
-    "Text": "Quelle est la capitale de l'Allemagne?",
-    "Options": ["Berlin", "Munich", "Hambourg", "Francfort"],
-    "CorrectAnswer": "Berlin",
+    "Text": "Quelle est la fonction principale du protocole HTTP?",
+    "Options": ["Transfert de fichiers", "Accès distant", "Gestion des adresses IP", "Communication web"],
+    "CorrectAnswer": "Communication web",
     "Niveau": 1
   },
   {
     "Id": 2,
-    "Text": "Quel est le plus grand océan du monde?",
-    "Options": ["Océan Atlantique", "Océan Pacifique", "Océan Indien", "Océan Arctique"],
-    "CorrectAnswer": "Océan Pacifique",
+    "Text": "Qu'est-ce qu'une base de données relationnelle?",
+    "Options": ["Un stockage de fichiers", "Une table de correspondances", "Un système de gestion de données structurées", "Un réseau de serveurs"],
+    "CorrectAnswer": "Un système de gestion de données structurées",
     "Niveau": 1
   },
   {
     "Id": 3,
-    "Text": "Qui a développé le langage de programmation Python?",
-    "Options": ["James Gosling", "Guido van Rossum", "Dennis Ritchie", "Bjarne Stroustrup"],
-    "CorrectAnswer": "Guido van Rossum",
-    "Niveau": 2
+    "Text": "Quel langage de programmation est souvent utilisé pour le développement web côté client?",
+    "Options": ["Python", "C++", "JavaScript", "SQL"],
+    "CorrectAnswer": "JavaScript",
+    "Niveau": 1
   },
   {
     "Id": 4,
-    "Text": "Quelle est la capitale de l'Italie?",
-    "Options": ["Rome", "Venise", "Milan", "Naples"],
-    "CorrectAnswer": "Rome",
+    "Text": "Qui est l'inventeur du World Wide Web?",
+    "Options": ["Alan Turing", "Bill Gates", "Tim Berners-Lee", "Mark Zuckerberg"],
+    "CorrectAnswer": "Tim Berners-Lee",
     "Niveau": 1
   },
   {
     "Id": 5,
-    "Text": "En quelle année a été inventé le World Wide Web?",
-    "Options": ["1989", "1991", "1995", "2000"],
-    "CorrectAnswer": "1989",
-    "Niveau": 2
+    "Text": "Quelle est la différence entre HTTP et HTTPS?",
+    "Options": ["HTTPS est plus rapide", "HTTP est sécurisé, HTTPS ne l'est pas", "HTTPS est chiffré", "Ils sont identiques"],
+    "CorrectAnswer": "HTTPS est chiffré",
+    "Niveau": 1
   },
   {
     "Id": 6,
-    "Text": "Quelle est la plus haute montagne du monde?",
-    "Options": ["Mont Everest", "Mont Blanc", "Mont Kilimandjaro", "Mont McKinley"],
-    "CorrectAnswer": "Mont Everest",
-    "Niveau": 1
+    "Text": "En Python, que fait la méthode append()?",
+    "Options": ["Supprime un élément d'une liste", "Ajoute un élément à la fin d'une liste", "Tri une liste", "Remplace un élément dans une liste"],
+    "CorrectAnswer": "Ajoute un élément à la fin d'une liste",
+    "Niveau": 2
   },
   {
     "Id": 7,
-    "Text": "Quelle est la commande pour cloner un dépôt Git?",
-    "Options": ["git clone", "git pull", "git push", "git commit"],
-    "CorrectAnswer": "git clone",
-    "Niveau": 3
+    "Text": "Quel est le but de l'algorithme de tri rapide (Quicksort)?",
+    "Options": ["Trier une liste de manière efficace", "Trouver le plus petit élément", "Rechercher un élément dans une liste", "Compresser des données"],
+    "CorrectAnswer": "Trier une liste de manière efficace",
+    "Niveau": 2
   },
   {
     "Id": 8,
-    "Text": "Quelle est la monnaie utilisée au Japon?",
-    "Options": ["Dollar", "Yuan", "Yen", "Won"],
-    "CorrectAnswer": "Yen",
-    "Niveau": 1
+    "Text": "Quel type de données est majoritairement utilisé pour les analyses en Big Data?",
+    "Options": ["Texte brut", "Images", "Données structurées", "Données non structurées"],
+    "CorrectAnswer": "Données non structurées",
+    "Niveau": 2
   },
   {
     "Id": 9,
-    "Text": "En quelle année Linux a-t-il été créé?",
-    "Options": ["1989", "1991", "1995", "2000"],
-    "CorrectAnswer": "1991",
+    "Text": "Quel est le rôle d'une fonction récursive?",
+    "Options": ["Appeler d'autres fonctions", "S'auto-appeler", "Exécuter une seule fois", "Interrompre un programme"],
+    "CorrectAnswer": "S'auto-appeler",
     "Niveau": 2
   },
   {
     "Id": 10,
-    "Text": "Quel pays est le plus grand par superficie?",
-    "Options": ["Canada", "Chine", "Russie", "États-Unis"],
-    "CorrectAnswer": "Russie",
-    "Niveau": 1
-  },
-  {
-    "Id": 11,
-    "Text": "Quel est le langage utilisé pour créer des pages web?",
-    "Options": ["HTML", "C#", "Java", "Python"],
-    "CorrectAnswer": "HTML",
-    "Niveau": 2
-  },
-  {
-    "Id": 12,
-    "Text": "Quel est le plus grand désert du monde?",
-    "Options": ["Désert du Sahara", "Désert d'Atacama", "Désert de Gobi", "Antarctique"],
-    "CorrectAnswer": "Antarctique",
-    "Niveau": 1
-  },
-  {
-    "Id": 13,
-    "Text": "Quel est le fondateur de Microsoft?",
-    "Options": ["Steve Jobs", "Bill Gates", "Elon Musk", "Jeff Bezos"],
-    "CorrectAnswer": "Bill Gates",
-    "Niveau": 2
-  },
-  {
-    "Id": 14,
-    "Text": "Quel est l'élément chimique dont le symbole est O?",
-    "Options": ["Or", "Oxygène", "Os", "Osmium"],
-    "CorrectAnswer": "Oxygène",
-    "Niveau": 1
-  },
-  {
-    "Id": 15,
-    "Text": "Quel protocole est utilisé pour sécuriser les sites web?",
-    "Options": ["HTTP", "FTP", "HTTPS", "SMTP"],
-    "CorrectAnswer": "HTTPS",
+    "Text": "Quelle est la complexité en temps moyenne de l'algorithme de tri par insertion?",
+    "Options": ["O(log n)", "O(n)", "O(n^2)", "O(n log n)"],
+    "CorrectAnswer": "O(n^2)",
     "Niveau": 3
   },
   {
+    "Id": 11,
+    "Text": "Quel langage est souvent utilisé pour les scripts de machine learning?",
+    "Options": ["Ruby", "Python", "C#", "HTML"],
+    "CorrectAnswer": "Python",
+    "Niveau": 3
+  },
+  {
+    "Id": 12,
+    "Text": "Quelle commande Git permet de voir les modifications d'un fichier?",
+    "Options": ["git log", "git status", "git diff", "git reset"],
+    "CorrectAnswer": "git diff",
+    "Niveau": 2
+  },
+  {
+    "Id": 13,
+    "Text": "Qu'est-ce que Docker permet de faire?",
+    "Options": ["Créer des machines virtuelles", "Développer des applications mobiles", "Conteneuriser des applications", "Tester le code en ligne"],
+    "CorrectAnswer": "Conteneuriser des applications",
+    "Niveau": 3
+  },
+  {
+    "Id": 14,
+    "Text": "Quel est le rôle principal du protocole DNS?",
+    "Options": ["Transférer des fichiers", "Gérer les connexions Wi-Fi", "Résoudre les noms de domaine en adresses IP", "Sécuriser les connexions"],
+    "CorrectAnswer": "Résoudre les noms de domaine en adresses IP",
+    "Niveau": 2
+  },
+  {
+    "Id": 15,
+    "Text": "Qu'est-ce qu'une API RESTful?",
+    "Options": ["Une bibliothèque de code", "Un type de service web", "Une application mobile", "Un serveur de base de données"],
+    "CorrectAnswer": "Un type de service web",
+    "Niveau": 2
+  },
+  {
     "Id": 16,
-    "Text": "Quelle planète est la plus proche du Soleil?",
-    "Options": ["Vénus", "Terre", "Mars", "Mercure"],
-    "CorrectAnswer": "Mercure",
-    "Niveau": 1
+    "Text": "En programmation, que signifie le principe DRY?",
+    "Options": ["Développement Réactif", "Don't Repeat Yourself", "Dynamic Resources Yield", "Design Ready Yield"],
+    "CorrectAnswer": "Don't Repeat Yourself",
+    "Niveau": 3
   },
   {
     "Id": 17,
-    "Text": "Quel langage est principalement utilisé pour les bases de données relationnelles?",
-    "Options": ["SQL", "PHP", "C++", "Ruby"],
-    "CorrectAnswer": "SQL",
+    "Text": "Quel outil est couramment utilisé pour la CI/CD?",
+    "Options": ["GitHub Actions", "MS Word", "Photoshop", "Google Drive"],
+    "CorrectAnswer": "GitHub Actions",
     "Niveau": 3
   },
   {
     "Id": 18,
-    "Text": "Quel navigateur web a été créé par Google?",
-    "Options": ["Firefox", "Safari", "Chrome", "Opera"],
-    "CorrectAnswer": "Chrome",
-    "Niveau": 2
+    "Text": "Qu'est-ce qu'un conteneur en informatique?",
+    "Options": ["Un type de base de données", "Un programme pour sécuriser le réseau", "Une unité de déploiement d'application isolée", "Un dispositif pour protéger l'ordinateur"],
+    "CorrectAnswer": "Une unité de déploiement d'application isolée",
+    "Niveau": 3
   },
   {
     "Id": 19,
-    "Text": "En quelle année l'Homme a-t-il marché sur la Lune pour la première fois?",
-    "Options": ["1965", "1969", "1972", "1975"],
-    "CorrectAnswer": "1969",
-    "Niveau": 1
+    "Text": "Quelle est la différence entre une API REST et une API SOAP?",
+    "Options": ["SOAP est plus rapide", "REST utilise principalement JSON, SOAP XML", "REST est propriétaire", "SOAP est basé sur HTTP uniquement"],
+    "CorrectAnswer": "REST utilise principalement JSON, SOAP XML",
+    "Niveau": 3
   },
   {
     "Id": 20,
-    "Text": "Quel est le langage principal utilisé pour les applications iOS?",
-    "Options": ["Swift", "Java", "C#", "Kotlin"],
-    "CorrectAnswer": "Swift",
-    "Niveau": 3
+    "Text": "Quelle est la commande pour supprimer un fichier en ligne de commande sous Linux?",
+    "Options": ["remove", "delete", "rm", "del"],
+    "CorrectAnswer": "rm",
+    "Niveau": 2
   }
 ]
