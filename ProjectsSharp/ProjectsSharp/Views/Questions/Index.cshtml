@@ -3,19 +3,20 @@
     ViewData["Title"] = "Quizz App";
 }
 <div>
-    <h1>Question</h1>
 
     @if (Model == null)
     {
-        <h2>Fin du questionnaire</h2>
-        <div>
+        <h2 class="end">Fin du questionnaire</h2>
+        <div class="titre">
             <button onclick="resetQuestions();">Recommencer</button>
         </div>
     }
     else
     {
+        <h1>Question</h1>
         <div>
             <h2 class="titre">@Model.Text</h2>
+            <h3 class="titre">@Model.Niveau point</h3>
             <ul class="questions">
                 @foreach (var option in Model.Options)
                 {
