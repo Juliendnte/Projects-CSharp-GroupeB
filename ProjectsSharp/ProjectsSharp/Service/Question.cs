@@ -1,4 +1,4 @@
-﻿namespace ProjectsSharp.Models;
+﻿namespace ProjectsSharp.Service;
 
 public class Question
 {
