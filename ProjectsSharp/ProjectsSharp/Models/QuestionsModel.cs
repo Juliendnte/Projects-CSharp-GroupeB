@@ -1,10 +1,10 @@
-﻿namespace ProjectsSharp.Service;
+﻿namespace ProjectsSharp.Models;
 
 using System.IO;
 using System.Text.Json;
-using Models;
+using Service;
 
-public class QuestionService
+public class QuestionModel
 {
     private const string JsonFilePath = "wwwroot/json/questions.json"; // Path to the json file
     private List<int> _Questions { get; } = new List<int>();

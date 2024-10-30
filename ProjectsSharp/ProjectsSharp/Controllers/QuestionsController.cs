@@ -1,22 +1,22 @@
 ﻿namespace ProjectsSharp.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
-using Service;
+using Models;
 
 public class QuestionsController : Controller
 {
-    private readonly QuestionService _questionService;
+    private readonly QuestionModel _questionModel;
 
-    public QuestionsController(QuestionService questionService)
+    public QuestionsController(QuestionModel questionModel)
     {
-        _questionService = questionService;
+        _questionModel = questionModel;
     }
 
     public IActionResult Index()
     {
         try
         {
-            var questions = _questionService.GetRandomQuestion();
+            var questions = _questionModel.GetRandomQuestion();
             return View(questions); 
         }
         catch (Exception)
@@ -28,13 +28,13 @@ public class QuestionsController : Controller
     [HttpGet]
     public JsonResult GetScore()
     {
-        return Json(new {score = _questionService.Score});
+        return Json(new {score = _questionModel.Score});
     }
     
     [HttpPost]
     public JsonResult SubmitOption([FromBody] AnswerModel answer)
     {
-        var correct = _questionService.CheckIsCorrectAnswer(answer.QuestionId, answer.SelectedOption);
+        var correct = _questionModel.CheckIsCorrectAnswer(answer.QuestionId, answer.SelectedOption);
         return Json(new { success = true, correct = correct.Item1, correctAnswer = correct.Item2 });
     }
 
@@ -47,8 +47,8 @@ public class QuestionsController : Controller
     [HttpPost]
     public IActionResult ResetQuestions()
     {
-        _questionService.ResetQuestions();
-        _questionService.Score = 0;
+        _questionModel.ResetQuestions();
+        _questionModel.Score = 0;
         return Ok();
     }
 
