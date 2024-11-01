@@ -14,7 +14,12 @@ public class GestionController : Controller
 
     public IActionResult Index()
     {
-        Console.WriteLine(_gestionsModels.GetTache());
         return View();
+    }
+
+    [HttpGet]
+    public string GetTache()
+    {
+        return _gestionsModels.GetTache();
     }
 }
