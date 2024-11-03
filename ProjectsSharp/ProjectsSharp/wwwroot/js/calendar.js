@@ -1,4 +1,5 @@
-﻿const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+﻿const dayNames = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 let currentDate = new Date();
 const monthYear = document.getElementById("monthYear");
 const calendar = document.getElementById("calendar");
@@ -28,14 +29,12 @@ function endOfMonth(year, month) {
 
 function startOfWeek(date) {
     const day = date.getDay();
-    const difference = (day === 0 ? -6 : 1) - day;
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + difference);
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - day);
 }
 
 function endOfWeek(date) {
     const day = date.getDay();
-    const difference = (day === 0 ? 0 : 7) - day;
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + difference);
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (6 - day));
 }
 
 function datesBetween(start, end) {
@@ -63,6 +62,31 @@ function indexEventsByDay(events) {
     return eventsByDay;
 }
 
+function formatTimeDifference(date1, date2) {
+    const timestamp1 = new Date(date1).getTime();
+    const timestamp2 = new Date(date2).getTime();
+
+    const minutes = Math.floor(Math.abs(timestamp2 - timestamp1) / 60000);
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    let result = '';
+    if (hours) {
+        result += `${hours}h`;
+    }
+    if (remainingMinutes || !hours) {
+        result += `${remainingMinutes}min`;
+    }
+
+    return result;
+}
+
+function getDayName(dateString, useUTC = false) {
+    const date = new Date(dateString);
+    const dayIndex = useUTC ? date.getUTCDay() : date.getDay();
+    return dayNames[dayIndex];
+}
+
 function renderCalendar() {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -81,17 +105,20 @@ function renderCalendar() {
     dates.forEach(date => {
         const dayKey = date.toISOString().split('T')[0];
         const dayCell = document.createElement("div");
+        const numberSpan = document.createElement("span");
         dayCell.classList.add("day-cell");
-        dayCell.textContent = date.getDate();
-
+        numberSpan.textContent = date.getDate();
+        
         if (date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear()) {
-            dayCell.classList.add("today");
+            numberSpan.classList.add("today");
+            dayCell.classList.add("selected")
             detail(date, eventsByDay[dayKey]);
             check = false
         }else if (date.getDate() === 1 && check){
             detail(date, eventsByDay[dayKey]);
             check = false
         }
+        dayCell.appendChild(numberSpan);
 
         if (eventsByDay[dayKey]) {
             eventsByDay[dayKey].forEach(event => {
@@ -122,14 +149,20 @@ function renderCalendar() {
                 dayCell.appendChild(eventElement);
             });
         }
-
         dayCell.addEventListener("click", ()=> detail(date, eventsByDay[dayKey]));
+        dayCell.addEventListener("click", ()=> {
+            document.querySelectorAll('.day-cell').forEach(c => c.classList.remove('selected'));
+            dayCell.classList.add('selected');
+            if (eventsByDay[dayKey]){
+                console.log(formatTimeDifference(eventsByDay[dayKey][0].startDate , eventsByDay[dayKey][0].endDate))
+            }
+        });
         calendar.appendChild(dayCell);
     });
 }
 
 function detail(date, event = null){
-    document.getElementById("date-selected").innerHTML = monthNames[date.getMonth()] + date.getDate().toString()
+    document.getElementById("date-selected").innerHTML = getDayName(date) + ", "+monthNames[date.getMonth()].slice(0, 3)+ " " + date.getDate().toString()
     document.querySelector(".detail-body").innerHTML = "";
     if (event){
         document.querySelector(".detail-body").innerHTML = `<h3>${event[0].title}</h3>
