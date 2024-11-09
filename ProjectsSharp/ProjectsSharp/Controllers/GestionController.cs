@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using System.Text.Json;
 
 public class GestionController : Controller
 {
@@ -18,8 +19,17 @@ public class GestionController : Controller
     }
 
     [HttpGet]
-    public string GetTache()
+    public IActionResult  GetTache()
     {
-        return _gestionsModels.GetTache();
+        try
+        {
+            var tache = _gestionsModels.GetTache();
+            return Ok(tache);
+        }
+        catch (Exception)
+        {
+            var err = new { message = "Error getting your calendar tache" }; 
+            return StatusCode(500, err);
+        }
     }
 }

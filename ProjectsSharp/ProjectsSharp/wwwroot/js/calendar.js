@@ -3,6 +3,7 @@ const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juil
 let currentDate = new Date();
 const monthYear = document.getElementById("monthYear");
 const calendar = document.getElementById("calendar");
+const overlay = document.querySelector("#overlay");
 
 const events = [];
 
@@ -11,13 +12,23 @@ fetch("Gestion/GetTache/", {
     headers: {
         'Content-Type': 'application/json',
     }})
-    .then(r => r.json())
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => { throw err });
+        }
+        return response.json();
+    })
     .then(data => {
         data.forEach(tache => {
-            events.push({id:tache.Id, title: tache.Titre, description:tache.Description, startDate: tache.date_debut, endDate: tache.date_fin });
+            events.push({id: tache.Id, title: tache.Titre, description: tache.Description, startDate: tache.date_debut, endDate: tache.date_fin });
         });
         renderCalendar();
+    })
+    .catch(err => {
+        console.error(err);
+        document.querySelector(".body").innerHTML = err.message || "An unexpected error occurred.";
     });
+
 
 function startOfMonth(year, month) {
     return new Date(year, month, 1);
@@ -55,11 +66,20 @@ function indexEventsByDay(events) {
         while (currentDate <= endDate) {
             const dayKey = currentDate.toISOString().split('T')[0];
             if (!eventsByDay[dayKey]) eventsByDay[dayKey] = [];
-            eventsByDay[dayKey].push(event);
+
+            eventsByDay[dayKey].push(event.id);
             currentDate.setDate(currentDate.getDate() + 1);
         }
     });
     return eventsByDay;
+}
+
+function indexEventsById(events) {
+    const eventsById = {};
+    events.forEach(event => {
+        eventsById[event.id] = event;
+    });
+    return eventsById;
 }
 
 function formatTimeDifference(date1, date2) {
@@ -81,6 +101,16 @@ function formatTimeDifference(date1, date2) {
     return result;
 }
 
+function formatTime(dateString) {
+    const date = new Date(dateString);
+
+    let hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const period = hours >= 12 ? "PM" : "AM";
+    
+    return `${hours % 12 || 12}:${minutes} ${period}`;
+}
+
 function getDayName(dateString, useUTC = false) {
     const date = new Date(dateString);
     const dayIndex = useUTC ? date.getUTCDay() : date.getDay();
@@ -93,9 +123,11 @@ function renderCalendar() {
     const startDate = startOfWeek(startOfMonth(year, month));
     const endDate = endOfWeek(endOfMonth(year, month));
     const dates = datesBetween(startDate, endDate);
+    const eventsByDay = indexEventsByDay(events);
+    const eventsById = indexEventsById(events);
+
     let check = true
     
-    const eventsByDay = indexEventsByDay(events);
 
     monthYear.textContent = `${monthNames[month]} ${year}`;
     calendar.innerHTML = "";
@@ -112,22 +144,25 @@ function renderCalendar() {
         if (date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear()) {
             numberSpan.classList.add("today");
             dayCell.classList.add("selected")
+            document.querySelectorAll('.day-cell').forEach(c => c.classList.remove('selected'));
             detail(date, eventsByDay[dayKey]);
             check = false
         }else if (date.getDate() === 1 && check){
             detail(date, eventsByDay[dayKey]);
+            dayCell.classList.add("selected")
             check = false
         }
         dayCell.appendChild(numberSpan);
 
         if (eventsByDay[dayKey]) {
-            eventsByDay[dayKey].forEach(event => {
+            eventsByDay[dayKey].forEach(eventId => {
+                const event = eventsById[eventId];
                 const eventElement = document.createElement("div");
                 eventElement.classList.add("event");
 
                 const startDate = new Date(event.startDate);
                 const endDate = new Date(event.endDate);
-                
+
                 if (startDate.toDateString() !== endDate.toDateString()) {
                     if (dayKey === event.startDate.split('T')[0]) {
                         const formattedTime = startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -146,28 +181,52 @@ function renderCalendar() {
                     eventElement.textContent = `${event.title} - ${formattedTime}`;
                 }
 
+                eventElement.addEventListener("dblclick", () => {
+                    document.querySelector(".more-detail").classList.add("show-detail");
+                    document.querySelector(".title").placeholder = event.title;
+                    overlay.style.display = "block";
+                });
+
                 dayCell.appendChild(eventElement);
             });
         }
+        
+        dayCell.addEventListener("dblclick", (ev)=> {
+            ev.stopImmediatePropagation();
+            document.querySelector(".create").classList.add("show-detail")
+            overlay.style.display = "block";
+        });
+        
         dayCell.addEventListener("click", ()=> detail(date, eventsByDay[dayKey]));
         dayCell.addEventListener("click", ()=> {
             document.querySelectorAll('.day-cell').forEach(c => c.classList.remove('selected'));
             dayCell.classList.add('selected');
-            if (eventsByDay[dayKey]){
-                console.log(formatTimeDifference(eventsByDay[dayKey][0].startDate , eventsByDay[dayKey][0].endDate))
-            }
         });
         calendar.appendChild(dayCell);
     });
+    overlay.addEventListener("click", ()=> {
+        overlay.style.display = "none";
+        document.querySelector(".more-detail").classList.remove("show-detail")
+        document.querySelector(".create").classList.remove("show-detail")
+    });
 }
 
-function detail(date, event = null){
+function detail(date, eventByDay = null){
     document.getElementById("date-selected").innerHTML = getDayName(date) + ", "+monthNames[date.getMonth()].slice(0, 3)+ " " + date.getDate().toString()
     document.querySelector(".detail-body").innerHTML = "";
-    if (event){
-        document.querySelector(".detail-body").innerHTML = `<h3>${event[0].title}</h3>
-                 <div>${event[0].description}</div>
-`;
+    const eventsById = indexEventsById(events);
+
+    if (eventByDay){
+        document.querySelector(".detail-body").innerHTML = "";
+        eventByDay.forEach((eventId) => {
+            const event = eventsById[eventId];
+            document.querySelector(".detail-body").innerHTML += `<div class="ctn-detail">
+            <div class="ctn-hour"><div class="began-hour">${formatTime(event.startDate)}</div><div class="time">${formatTimeDifference(event.startDate, event.endDate)}</div></div
+    ><div class="ctn-title"><img src="img/file.png" alt="title" style="
+        width: 20px;
+        height: 20px;
+    "/><h5>${event.title}</h5></div></div>`;
+        })
     }
 }
 

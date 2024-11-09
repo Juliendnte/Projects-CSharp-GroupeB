@@ -12,13 +12,73 @@
         <div id="calendar" class="calendar-grid"></div>
     </div>
     
-<section class="detail">
-    <div class="detail-header">
-        <span id="date-selected"></span>
-    </div>
-    <div class="detail-body">
-    </div>
-</section>
+    <section class="detail">
+        <div class="detail-header">
+            <span id="date-selected"></span>
+        </div>
+        <div class="detail-body">
+        </div>
+    </section>
+
+    <div class="overlay" id="overlay"></div>
+    <section class="more-detail">
+        <div class="more-detail-header">
+            <div class="save">
+                <img src="img/sauvegarder.png" alt="save"/>
+                <span>Save</span>
+            </div>
+            <div class="discard">
+                <img src="img/poubelle.png" alt="discard"/>
+                <span>Discard</span>
+            </div>
+        </div>
+        <div class="more-detail-body">
+            <div class="contain">
+                <div class="container-titre">
+                    <img src="img/edit.png" alt="title"/>
+                    <input id="title-detail" placeholder="Titre" autofocus name="title" />
+                </div>
+                <div class="container-time">
+                    <img src="img/stopwatch.png" alt="time"/>
+                    <input type="datetime-local" class="input-create" id="began-time-detail" name="began-time"/>
+                    to
+                    <input type="datetime-local" class="input-create" id="end-time-detail" name="began-time"/>
+                </div>
+                <div class="container-description">
+                    <img src="img/left.png" alt="desctipytion"/>
+                    <input id="description-detail" type="text"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="create">
+        <div class="create-header">
+            <div class="save">
+                <img src="img/sauvegarder.png" alt="save"/>
+                <span>Save</span>
+            </div>
+            <div class="discard">
+                <img src="img/poubelle.png" alt="discard"/>
+                <span>Discard</span>
+            </div>
+        </div>
+        <div class="create-body">
+            <label>
+                Titre :
+                <input type="text" class="input-create" id="title-create" name="title"/>
+            </label>
+            <label>
+                <input type="datetime-local" class="input-create" id="began-time-create" name="began-time"/>
+                to 
+                <input type="datetime-local" class="input-create" id="end-time-create" name="began-time"/>
+            </label>
+            <label>
+                Description :
+                <input type="text" class="input-create" id="description-create" name="title"/>
+            </label>
+        </div>
+    </section>
 </div>
 
 <script src="js/calendar.js"></script>
