@@ -1,0 +1,17 @@
+@{
+ViewData["Title"] = "Weather App";
+}
+
+<div class="WeatherContainer">
+    <div>
+        <label for="city" class="label">Entrez le nom de la ville :</label><br>
+        <input type="text" id="city" placeholder="ex: Marseille" />
+        <button onclick="getWeather()">Obtenir la météo</button>
+    </div>
+
+    <div id="weatherResult"></div>
+</div>
+
+<link rel="stylesheet" href="/css/styles.css">
+
+<script src="/js/weather.js"></script>
