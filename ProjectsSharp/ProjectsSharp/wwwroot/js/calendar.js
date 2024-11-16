@@ -7,20 +7,37 @@ const overlay = document.querySelector("#overlay");
 
 const events = [];
 
-fetch("Gestion/GetTache/", {
+const getData = () => {
+    fetch("Gestion/GetTache/",
+{
     method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-    }})
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => { throw err });
-        }
-        return response.json();
-    })
+        headers
+:
+    {
+        'Content-Type'
+    :
+        'application/json',
+    }
+}
+)
+.
+then(response => {
+    if (!response.ok) {
+        return response.json().then(err => {
+            throw err
+        });
+    }
+    return response.json();
+})
     .then(data => {
         data.forEach(tache => {
-            events.push({id: tache.Id, title: tache.Titre, description: tache.Description, startDate: tache.date_debut, endDate: tache.date_fin });
+            events.push({
+                id: tache.Id,
+                title: tache.Titre,
+                description: tache.Description,
+                startDate: tache.Date_debut,
+                endDate: tache.Date_fin
+            });
         });
         renderCalendar();
     })
@@ -28,7 +45,7 @@ fetch("Gestion/GetTache/", {
         console.error(err);
         document.querySelector(".body").innerHTML = err.message || "An unexpected error occurred.";
     });
-
+}
 
 function startOfMonth(year, month) {
     return new Date(year, month, 1);
@@ -40,13 +57,16 @@ function endOfMonth(year, month) {
 
 function startOfWeek(date) {
     const day = date.getDay();
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - day);
+    const diff = day === 0 ? 0 : -day;
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + diff);
 }
 
 function endOfWeek(date) {
     const day = date.getDay();
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (6 - day));
+    const diff = day === 0 ? 6 : 6 - day;
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + diff);
 }
+
 
 function datesBetween(start, end) {
     const dates = [];
@@ -118,6 +138,7 @@ function getDayName(dateString, useUTC = false) {
 }
 
 function renderCalendar() {
+    calendar.innerHTML = "";
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
     const startDate = startOfWeek(startOfMonth(year, month));
@@ -133,9 +154,16 @@ function renderCalendar() {
     calendar.innerHTML = "";
 
     const today = new Date();
-
+    
     dates.forEach(date => {
-        const dayKey = date.toISOString().split('T')[0];
+        function getLocalDateKey(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');  
+            const day = String(date.getDate()).padStart(2, '0');
+
+            return `${year}-${month}-${day}`;
+        }
+        const dayKey =getLocalDateKey(date);
         const dayCell = document.createElement("div");
         const numberSpan = document.createElement("span");
         dayCell.classList.add("day-cell");
@@ -153,7 +181,6 @@ function renderCalendar() {
             check = false
         }
         dayCell.appendChild(numberSpan);
-
         if (eventsByDay[dayKey]) {
             eventsByDay[dayKey].forEach(eventId => {
                 const event = eventsById[eventId];
@@ -183,7 +210,14 @@ function renderCalendar() {
 
                 eventElement.addEventListener("dblclick", () => {
                     document.querySelector(".more-detail").classList.add("show-detail");
-                    document.querySelector(".title").placeholder = event.title;
+                    document.querySelector("#title-detail").value = event.title;
+                    document.querySelector("#description-detail").value = event.description;
+                    document.querySelector("#began-time-detail").value = new Date(event.startDate).toISOString().slice(0, 16);
+                    document.querySelector("#end-time-detail").value = new Date(event.endDate).toISOString().slice(0, 16);
+
+                    document.querySelector(".more-detail-header .save").addEventListener("click", ()=> update(event.id));
+                    document.querySelector(".more-detail-header .discard").addEventListener("click", ()=> del(event.id));
+                    
                     overlay.style.display = "block";
                 });
 
@@ -194,6 +228,7 @@ function renderCalendar() {
         dayCell.addEventListener("dblclick", (ev)=> {
             ev.stopImmediatePropagation();
             document.querySelector(".create").classList.add("show-detail")
+            document.querySelector(".create-header .save").addEventListener("click", create);
             overlay.style.display = "block";
         });
         
@@ -230,13 +265,107 @@ function detail(date, eventByDay = null){
     }
 }
 
+function update(id) {
+    const Titre = document.querySelector("#title-detail").value;
+    const Description = document.querySelector("#description-detail").value;
+    const beganTime = new Date(document.querySelector("#began-time-detail").value).toISOString(); 
+    const endTime = new Date(document.querySelector("#end-time-detail").value).toISOString();
+
+
+    fetch(`/UpdateTache/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            Titre,            
+            Description,
+            Date_debut: beganTime,
+            Date_fin: endTime
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(err => { throw new Error(err || "An error occurred"); });
+            }
+            return response.json();
+        })
+        .catch(err => {
+            console.error("Fetch error:", err);
+        });
+    overlay.style.display = "none";
+    document.querySelector(".more-detail").classList.remove("show-detail");
+    document.querySelector(".create").classList.remove("show-detail");
+    getData();
+    location.reload();
+}
+
+function del(id) {
+    fetch(`/DeleteTache/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(err => { throw new Error(err || "An error occurred"); });
+            }
+            return response.json();
+        })
+        .catch(err => {
+            console.error("Fetch error:", err);
+        });
+    overlay.style.display = "none";
+    document.querySelector(".more-detail").classList.remove("show-detail");
+    document.querySelector(".create").classList.remove("show-detail");
+    getData();
+    location.reload();
+}
+
+function create() {
+    const Titre = document.querySelector("#title-create").value;
+    const Description = document.querySelector("#description-create").value;
+    const beganTime = new Date(document.querySelector("#began-time-create").value).toISOString();
+    const endTime = new Date(document.querySelector("#end-time-create").value).toISOString();
+    
+    fetch("/CreateTache", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            Titre,
+            Description,
+            Date_debut: beganTime,
+            Date_fin: endTime
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(err => { throw new Error(err || "An error occurred"); });
+            }
+            return response.json();
+        })
+        .catch(err => {
+            console.error("Fetch error:", err);
+        });
+    
+    overlay.style.display = "none";
+    document.querySelector(".more-detail").classList.remove("show-detail");
+    document.querySelector(".create").classList.remove("show-detail");
+    getData();
+    location.reload();
+}
+
 document.getElementById("prevMonth").addEventListener("click", () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar();
+    getData();
 });
 
 document.getElementById("nextMonth").addEventListener("click", () => {
     currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar();
+    getData();
 });
 
+getData()
