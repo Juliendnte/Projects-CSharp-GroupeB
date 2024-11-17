@@ -12,6 +12,7 @@ Avant de lancer le projet, assurez-vous d'avoir les éléments suivants install�
 .NET SDK 6.0 ou supérieur
 Git
 Un éditeur de code (comme Visual Studio Code ou JetBrains Rider)
+SQL Server (ou un autre serveur de base de données compatible avec SQL)
 ```
 ## Configuration de l'environnement
 
@@ -24,7 +25,7 @@ Un éditeur de code (comme Visual Studio Code ou JetBrains Rider)
 
 Dans le dossier /ProjectsSharp/ProjectsSharp, créez un fichier .env avec le contenu suivant :
 ```dotenv
-DB_CONNECTION_STRING='Server=your_server;Database=your_database;User Id=your_username;Password=your_password;'
+DB_CONNECTION_STRING='Server=your_server;Port=your_port;Database=your_database;User Id=your_username;Password=your_password;'
 ```
 Assurez-vous de remplacer 
 ###### your_server, your_database, your_username, your_password 
@@ -36,7 +37,13 @@ Exécutez la commande suivante pour restaurer les packages NuGet :
 ```bash
   dotnet restore
 ```
+### Étape 4 : Générer et appliquer les migrations (facultatif)
 
+Pour générer une migration initiale (si ce n'est pas déjà fait) et appliquer les modifications à la base de données, exécutez les commandes suivantes :
+```bash
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+```
 ## Lancer le projet
 
 Pour démarrer l'application, restez dans le répertoire /ProjectsSharp/ProjectsSharp et lancez la commande suivante :

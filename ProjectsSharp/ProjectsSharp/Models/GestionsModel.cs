@@ -12,6 +12,8 @@ public class GestionsModels
     {
         DotEnv.Load();
     }
+    
+    private string table = "Taches";
 
     private string GetConnectionString()
     {
@@ -24,7 +26,7 @@ public class GestionsModels
         {
             using (var mySqlCmd =
                    new MySqlCommand(
-                       "INSERT INTO tache (Titre, Description, date_debut, date_fin) VALUES (@Titre, @Description, @date_debut, @date_fin)",
+                       "INSERT INTO "+table+" (Titre, Description, date_debut, date_fin) VALUES (@Titre, @Description, @date_debut, @date_fin)",
                        mySqlCn))
             {
                 mySqlCmd.Parameters.AddWithValue("@Titre", newTache.Titre);
@@ -45,7 +47,7 @@ public class GestionsModels
 
         using (var mySqlCn = new MySqlConnection(GetConnectionString()))
         {
-            using (var mySqlCmd = new MySqlCommand("SELECT * FROM tache", mySqlCn))
+            using (var mySqlCmd = new MySqlCommand("SELECT * FROM "+table, mySqlCn))
             {
                 mySqlCn.Open();
                 using (var mySqlReader = mySqlCmd.ExecuteReader(CommandBehavior.CloseConnection))
@@ -75,7 +77,7 @@ public class GestionsModels
         {
             using (var mySqlCmd =
                    new MySqlCommand(
-                       "UPDATE tache SET Titre = @Titre, Description = @Description, date_debut = @Date_debut, date_fin = @Date_fin WHERE Id = @Id",
+                       "UPDATE "+table+" SET Titre = @Titre, Description = @Description, date_debut = @Date_debut, date_fin = @Date_fin WHERE Id = @Id",
                        mySqlCn))
             {
                 mySqlCmd.Parameters.AddWithValue("@Id", id);
@@ -95,7 +97,7 @@ public class GestionsModels
     {
         using (var mySqlCn = new MySqlConnection(GetConnectionString()))
         {
-            using (var mySqlCmd = new MySqlCommand("DELETE FROM tache WHERE Id = @Id", mySqlCn))
+            using (var mySqlCmd = new MySqlCommand("DELETE FROM "+table+" WHERE Id = @Id", mySqlCn))
             {
                 mySqlCmd.Parameters.AddWithValue("@Id", id);
 
