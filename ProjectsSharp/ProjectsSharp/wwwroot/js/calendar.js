@@ -136,7 +136,6 @@ function getDayName(dateString, useUTC = false) {
 }
 
 function renderCalendar() {
-    calendar.innerHTML = "";
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
     const startDate = startOfWeek(startOfMonth(year, month));
@@ -227,6 +226,12 @@ function renderCalendar() {
         dayCell.addEventListener("dblclick", (ev) => {
             ev.stopImmediatePropagation();
             document.querySelector(".create").classList.add("show-detail")
+            date.setDate(date.getDate() + 1)
+            document.querySelector("#began-time-create").value = date.toISOString().slice(0, 16);
+            let plustard = date
+            plustard.setMinutes(plustard.getMinutes() + 30)
+
+            document.querySelector("#end-time-create").value = plustard.toISOString().slice(0, 16);
             document.querySelector(".create-header .save").addEventListener("click", create);
             overlay.style.display = "block";
         });
@@ -331,7 +336,7 @@ function create() {
     const Description = document.querySelector("#description-create").value;
     const beganTime = new Date(document.querySelector("#began-time-create").value).toISOString();
     const endTime = new Date(document.querySelector("#end-time-create").value).toISOString();
-
+    
     fetch("/CreateTache", {
         method: 'POST',
         headers: {

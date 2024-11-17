@@ -182,10 +182,16 @@ span.today {
     border-radius: 8px;
 }
 
-.more-detail-header, .create-header{
+.more-detail-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.create-header{
+    display: flex;
+    justify-content: flex-start;
     border-bottom: 1px solid #e0e0e0;
 }
 
@@ -230,7 +236,7 @@ span.today {
     margin: 20px;
 }
 
-#description-detail{
+#description-detail, #description-create{
     width: 90%;
     height: 150px;
     text-align: left;
