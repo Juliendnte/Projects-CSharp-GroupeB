@@ -1,0 +1,83 @@
+
+.label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input[type="text"] {
+    width: 85%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+button {
+    margin-top: 2.5vh;
+    height: 6.5vh;
+    background-color: white;
+    color: #ffffff;
+    padding: 5px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#weatherResult {
+    margin-left: 6vh;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: -3vh;
+}
+
+.weatherContainer{
+    margin-top: 0.5vh;
+    margin-right: -3vh;
+}
+
+#searchImg{
+    width: 5vh;
+    margin-bottom: 1vh;
+}
+
+#pTemp{
+    font-size: 70px;
+}
+
+#pCity{
+    font-size: 40px;
+    margin-top: -6vh;
+    margin-left: 2vh;
+}
+
+.second{
+    display: flex;
+}
+
+#pHumidity{
+    font-size: 20px;
+    margin-left: 6vh;
+}
+
+#pHumidity1{
+    margin-left: 3.5vh;
+    margin-bottom: 0vh;
+}
+
+#pDescription{
+    font-size: 20px;
+    margin-left: 1vh;
+}
+
+#cloud{
+    margin-top: -3vh;
+    width: 20vh;
+    margin-left: 25.5vh;
+}
