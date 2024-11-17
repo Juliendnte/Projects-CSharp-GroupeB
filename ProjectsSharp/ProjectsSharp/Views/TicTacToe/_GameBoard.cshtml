@@ -1,0 +1,46 @@
+@model ProjectsSharp.Models.TicTacToeGame
+
+<div id="game-board">
+    <h3>Tour du joueur : @Model.CurrentPlayer</h3>
+    <table class="table table-bordered text-center">
+        @for (int i = 0; i < 3; i++)
+        {
+            <tr>
+                @for (int j = 0; j < 3; j++)
+                {
+                    <td>
+                        @if (Model.Board[i, j] == '\0' && !Model.IsGameOver)
+                        {
+                            <button class="btn btn-light cell" data-row="@i" data-col="@j"></button>
+                        }
+                        else
+                        {
+                            <span>@Model.Board[i, j]</span>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+<input type="hidden" id="selected-row" />
+<input type="hidden" id="selected-col" />
+
+
+<button id="validate-move" class="btn btn-primary" onclick="validateMove()">Valider</button>
+
+@if (Model.IsGameOver)
+{
+    <div class="alert alert-info">
+        @if (Model.Winner != ' ')
+        {
+            <p>Le joueur @Model.Winner a gagné !</p>
+        }
+        else
+        {
+            <p>Match nul !</p>
+        }
+    </div>
+}
+<script defer src="~/js/morpion.js"></script>

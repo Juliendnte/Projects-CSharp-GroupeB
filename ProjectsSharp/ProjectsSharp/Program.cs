@@ -1,6 +1,7 @@
 using ProjectsSharp.Models;
 using Microsoft.EntityFrameworkCore;
 using dotenv.net;
+using ProjectsSharp.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddSingleton<QuestionModel>();
 builder.Services.AddSingleton<GestionsModels>();
+builder.Services.AddSingleton<Question>();
+builder.Services.AddSingleton<TicTacToeService>();
 
 var app = builder.Build();
 

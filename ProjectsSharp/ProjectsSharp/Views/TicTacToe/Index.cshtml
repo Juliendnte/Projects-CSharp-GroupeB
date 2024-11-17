@@ -1,0 +1,14 @@
+@model ProjectsSharp.Models.TicTacToeGame
+
+@{
+    ViewData["Title"] = "Morpion";
+}
+
+<h2>Morpion</h2>
+
+<div id="game-board">
+    @Html.Partial("_GameBoard", Model)
+</div>
+
+<button id="reset-game" onclick="restart()" >Réinitialiser</button>
+

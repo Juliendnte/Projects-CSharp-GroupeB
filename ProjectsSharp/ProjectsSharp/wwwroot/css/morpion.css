@@ -1,0 +1,14 @@
+.cell {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    margin: 5px;
+}
+.row {
+    display: flex;
+}
+
+.cell.selected {
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
