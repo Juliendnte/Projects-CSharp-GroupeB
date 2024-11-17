@@ -1,14 +1,16 @@
-namespace ProjectsSharp.Service;
+using ProjectsSharp.Models;
 
-using Models;
-
-public class TicTacToeService
+namespace ProjectsSharp.Service
+{
+  public class TicTacToeService
 {
     public bool MakeMove(TicTacToeGame game, int row, int col)
     {
+
         if (game.Board[row, col] == '\0' && !game.IsGameOver)
         {
             game.Board[row, col] = game.CurrentPlayer;
+
             if (CheckWin(game, game.CurrentPlayer))
             {
                 game.IsGameOver = true;
@@ -16,15 +18,18 @@ public class TicTacToeService
             }
             else if (IsBoardFull(game))
             {
-                game.IsGameOver = true;
+                game.IsGameOver = true; 
             }
             else
             {
+
                 game.CurrentPlayer = game.CurrentPlayer == 'X' ? 'O' : 'X';
             }
+
             return true;
         }
-        return false;
+
+        return false; 
     }
 
     private bool CheckWin(TicTacToeGame game, char player)
@@ -37,11 +42,13 @@ public class TicTacToeService
                 return true;
             }
         }
+
         if ((game.Board[0, 0] == player && game.Board[1, 1] == player && game.Board[2, 2] == player) ||
             (game.Board[0, 2] == player && game.Board[1, 1] == player && game.Board[2, 0] == player))
         {
             return true;
         }
+
         return false;
     }
 
@@ -49,11 +56,8 @@ public class TicTacToeService
     {
         foreach (var cell in game.Board)
         {
-            if (cell == '\0')
-            {
-                return false;
-            }
+            if (cell == '\0') return false;
         }
         return true;
     }
-}
+}}

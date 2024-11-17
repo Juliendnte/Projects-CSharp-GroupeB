@@ -1,47 +1,40 @@
-namespace ProjectsSharp.Controllers;
-
 using Microsoft.AspNetCore.Mvc;
-using Models;
-using Service;
+using ProjectsSharp.Models;
+using ProjectsSharp.Service;
 
-[ApiController]
+namespace ProjectsSharp.Controllers
+{
+  [ApiController]
 [Route("api/[controller]")]
 public class TicTacToeController : Controller
 {
-    private readonly TicTacToeService _morpionService;
+    private readonly TicTacToeService _ticTacToeService;
+    private static TicTacToeGame CurrentGame { get; set; } = new TicTacToeGame();
+    
 
-    public TicTacToeController(TicTacToeService morpionservice)
+    public TicTacToeController(TicTacToeService ticTacToeService)
     {
-        _morpionService = morpionservice;
+        _ticTacToeService = ticTacToeService;
     }
 
+    [HttpGet]
     public IActionResult Index()
     {
-        return View();
-    } 
+        return View(CurrentGame); 
+    }
+
+    [HttpGet("move")]
+    public IActionResult MakeMove(int row, int col)
+    {
+        _ticTacToeService.MakeMove(CurrentGame, row, col);
+        return PartialView("_GameBoard", CurrentGame);
+        
+    }
     
-    [HttpGet("new")]
-    public IActionResult StartNewGame()
+    [HttpGet("restart")]
+    public IActionResult restartGame()
     {
-        var game = new TicTacToeGame();
-        return Ok(game);
+        CurrentGame = new TicTacToeGame();
+        return PartialView("_GameBoard", CurrentGame);
     }
-
-    [HttpPost("move")]
-    public ActionResult<JsonResult> MakeMove([FromBody] MoveRequest request)
-    {
-        var game = request.Game;
-        if (_morpionService.MakeMove(game, request.Row, request.Col))
-        {
-            return Ok(game);
-        }
-        return BadRequest("Invalid move");
-    }
-}
-
-public class MoveRequest
-{
-    public TicTacToeGame Game { get; set; }
-    public int Row { get; set; }
-    public int Col { get; set; }
-}
+}}
