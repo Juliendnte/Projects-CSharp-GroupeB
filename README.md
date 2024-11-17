@@ -72,3 +72,7 @@ Une fois le projet lancé, un lien http://localhost:xxxx apparaîtra dans le ter
 
     Gérer vos tâches avec un calendrier interactif.
     Ajouter, modifier ou supprimer des événements.
+
+### Convertisseur
+
+    Convertissez des devises
