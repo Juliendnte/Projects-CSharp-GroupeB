@@ -1,4 +1,5 @@
 using ProjectsSharp.Models;
+using ProjectsSharp.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ builder.Services.AddSession();
 
 builder.Services.AddSingleton<QuestionModel>();
 builder.Services.AddSingleton<GestionsModels>();
-builder.Services.AddSingleton<QuestionService>();
+builder.Services.AddSingleton<Question>();
 builder.Services.AddSingleton<WeatherService>();
 
 var app = builder.Build();
