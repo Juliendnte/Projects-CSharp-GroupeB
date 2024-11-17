@@ -4,7 +4,7 @@
     font-size: 16px;
 }
 
-input[type="text"] {
+#city{
     width: 85%;
     padding: 10px;
     margin-top: 10px;
@@ -13,7 +13,7 @@ input[type="text"] {
     border-radius: 20px;
 }
 
-button {
+.getWeather {
     margin-top: 2.5vh;
     height: 6.5vh;
     background-color: white;
@@ -26,7 +26,7 @@ button {
     border: 1px solid #ddd;
 }
 
-button:hover {
+.getWeather:hover {
     background-color: #0056b3;
 }
 
