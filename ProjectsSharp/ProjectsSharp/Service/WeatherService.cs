@@ -24,7 +24,7 @@ namespace ProjectsSharp.Service
                 var weatherData = new WeatherData
                 {
                     CityName = jsonDoc.RootElement.GetProperty("name").GetString(),
-                    Temperature = jsonDoc.RootElement.GetProperty("main").GetProperty("temp").GetDouble(),
+                    Temperature = (int)Math.Round(jsonDoc.RootElement.GetProperty("main").GetProperty("temp").GetDouble()),
                     Humidity = jsonDoc.RootElement.GetProperty("main").GetProperty("humidity").GetInt32(),
                     Description = jsonDoc.RootElement.GetProperty("weather")[0].GetProperty("description").GetString()
                 };

@@ -31,10 +31,11 @@
 function displayWeather(data) {
     const weatherDiv = document.getElementById('weatherResult');
     weatherDiv.innerHTML = `
-        <h2>Météo pour ${data.cityName}</h2> 
-        <p>Température : ${data.temperature}°C</p>
-        <p>Humidité : ${data.humidity}%</p>
-        <p>Conditions : ${data.description}</p>
+    
+        <p id="pTemp">${data.temperature}°C</p>
+        <p id="pCity">${data.cityName}</p>
+        <p id="pHumidity1">Humidité :</p>
+        <p id="pHumidity"> ${data.humidity}%</p>
     `;
 }
 

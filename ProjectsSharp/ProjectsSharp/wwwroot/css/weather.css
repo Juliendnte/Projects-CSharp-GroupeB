@@ -5,23 +5,25 @@
 }
 
 input[type="text"] {
-    width: 80%;
+    width: 85%;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 button {
-    background-color: #007bff;
+    margin-top: 2.5vh;
+    height: 6.5vh;
+    background-color: white;
     color: #ffffff;
-    padding: 10px 20px;
+    padding: 5px 20px;
     font-size: 16px;
-    border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s;
+    border: 1px solid #ddd;
 }
 
 button:hover {
@@ -29,22 +31,53 @@ button:hover {
 }
 
 #weatherResult {
-    margin-top: 20px;
+    margin-left: 6vh;
     font-size: 18px;
     line-height: 1.6;
+    margin-top: -3vh;
 }
 
-#weatherResult h2 {
-    color: #007bff;
-    font-size: 22px;
-    margin-bottom: 10px;
+.weatherContainer{
+    margin-top: 0.5vh;
+    margin-right: -3vh;
 }
 
-#weatherResult p {
-    color: #555;
-    font-size: 16px;
+#searchImg{
+    width: 5vh;
+    margin-bottom: 1vh;
 }
 
-.WeatherContainer{
-   
+#pTemp{
+    font-size: 70px;
+}
+
+#pCity{
+    font-size: 40px;
+    margin-top: -6vh;
+    margin-left: 2vh;
+}
+
+.second{
+    display: flex;
+}
+
+#pHumidity{
+    font-size: 20px;
+    margin-left: 6vh;
+}
+
+#pHumidity1{
+    margin-left: 3.5vh;
+    margin-bottom: 0vh;
+}
+
+#pDescription{
+    font-size: 20px;
+    margin-left: 1vh;
+}
+
+#cloud{
+    margin-top: -3vh;
+    width: 20vh;
+    margin-left: 25.5vh;
 }

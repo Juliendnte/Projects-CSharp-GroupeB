@@ -2,15 +2,14 @@
 ViewData["Title"] = "Weather App";
 }
 
-<div class="WeatherContainer">
-    <div>
-        <label for="city" class="label">Entrez le nom de la ville :</label><br>
-        <input type="text" id="city" placeholder="ex: Marseille" />
-        <button onclick="getWeather()">Obtenir la météo</button>
-    </div>
-
+<div class="weatherContainer">
+    
+    <input type="text" id="city" placeholder="Paris" />
     <div id="weatherResult"></div>
 </div>
+<button onclick="getWeather()">
+    <img id="searchImg" src="search.png" alt="search image">
+</button>
 
 <link rel="stylesheet" href="/css/styles.css">
 
