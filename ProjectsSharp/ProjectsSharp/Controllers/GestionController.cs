@@ -10,6 +10,7 @@ public class GestionController : Controller
 {
     private readonly GestionsModels _gestionsModels;
     
+
     public GestionController(GestionsModels gestionsModels)
     {
         _gestionsModels = gestionsModels;
@@ -21,7 +22,7 @@ public class GestionController : Controller
     }
 
     [HttpGet]
-    public IActionResult  GetTache()
+    public IActionResult GetTache()
     {
         try
         {
@@ -30,11 +31,11 @@ public class GestionController : Controller
         }
         catch (Exception)
         {
-            var err = new { message = "Error getting your calendar tache" }; 
+            var err = new { message = "Error getting your calendar tache" };
             return StatusCode(500, err);
         }
     }
-    
+
     [HttpPatch("UpdateTache/{id}")]
     public IActionResult UpdateTache([FromRoute] int id, [FromBody] Tache tache)
     {
@@ -45,10 +46,11 @@ public class GestionController : Controller
         }
         catch (Exception ex)
         {
-            var err = new { message = "Error updating your calendar tache", error = ex.Message }; 
+            var err = new { message = "Error updating your calendar tache", error = ex.Message };
             return StatusCode(500, err);
         }
     }
+
     [HttpDelete("DeleteTache/{id}")]
     public IActionResult DeleteTache([FromRoute] int id)
     {
@@ -58,11 +60,11 @@ public class GestionController : Controller
         }
         catch (Exception ex)
         {
-            var err = new { message = "Error deleting your calendar tache", error = ex.Message }; 
+            var err = new { message = "Error deleting your calendar tache", error = ex.Message };
             return StatusCode(500, err);
         }
     }
-    
+
     [HttpPost("CreateTache")]
     public IActionResult CreateTache([FromBody] Tache tache)
     {
@@ -72,7 +74,7 @@ public class GestionController : Controller
         }
         catch (Exception ex)
         {
-            var err = new { message = "Error creating your calendar tache", error = ex.Message }; 
+            var err = new { message = "Error creating your calendar tache", error = ex.Message };
             return StatusCode(500, err);
         }
     }
