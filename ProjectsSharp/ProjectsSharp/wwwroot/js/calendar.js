@@ -336,11 +336,11 @@ function create() {
     const Description = document.querySelector("#description-create").value;
     const beganTime = new Date(document.querySelector("#began-time-create").value).toISOString();
     const endTime = new Date(document.querySelector("#end-time-create").value).toISOString();
-    
+
     fetch("/CreateTache", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             Titre,
@@ -360,7 +360,7 @@ function create() {
         .catch(err => {
             console.error("Fetch error:", err);
         });
-
+    
     overlay.style.display = "none";
     document.querySelector(".more-detail").classList.remove("show-detail");
     document.querySelector(".create").classList.remove("show-detail");

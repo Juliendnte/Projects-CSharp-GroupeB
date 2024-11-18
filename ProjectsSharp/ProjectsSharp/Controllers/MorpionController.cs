@@ -8,13 +8,13 @@ namespace ProjectsSharp.Controllers
 [Route("api/[controller]")]
 public class TicTacToeController : Controller
 {
-    private readonly TicTacToeService _ticTacToeService;
+    private readonly TicTacToeModel _ticTacToeModel;
     private static TicTacToeGame CurrentGame { get; set; } = new TicTacToeGame();
     
 
-    public TicTacToeController(TicTacToeService ticTacToeService)
+    public TicTacToeController(TicTacToeModel ticTacToeModel)
     {
-        _ticTacToeService = ticTacToeService;
+        _ticTacToeModel = ticTacToeModel;
     }
 
     [HttpGet]
@@ -26,7 +26,7 @@ public class TicTacToeController : Controller
     [HttpGet("move")]
     public IActionResult MakeMove(int row, int col)
     {
-        _ticTacToeService.MakeMove(CurrentGame, row, col);
+        _ticTacToeModel.MakeMove(CurrentGame, row, col);
         return PartialView("_GameBoard", CurrentGame);
         
     }

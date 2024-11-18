@@ -37,7 +37,7 @@ Exécutez la commande suivante pour restaurer les packages NuGet :
 ```bash
   dotnet restore
 ```
-### Étape 4 : Générer et appliquer les migrations (facultatif)
+### Étape 4 : Générer et appliquer les migrations
 
 Pour générer une migration initiale (si ce n'est pas déjà fait) et appliquer les modifications à la base de données, exécutez les commandes suivantes :
 ```bash
@@ -50,6 +50,9 @@ Pour démarrer l'application, restez dans le répertoire /ProjectsSharp/Projects
 ```bash
   dotnet run --launch-profile http
 ```
+
+#### Si vous rencontrez des problèmes pendant votre expèrience, réessayer une deuxième fois et ça devrait marcher.
+
 Une fois le projet lancé, un lien http://localhost:xxxx apparaîtra dans le terminal. Cliquez dessus pour accéder à l'application dans votre navigateur.
 ## Fonctionnalités
 ### Morpion

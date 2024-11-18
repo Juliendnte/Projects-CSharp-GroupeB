@@ -22,8 +22,8 @@ builder.Services.AddSession();
 builder.Services.AddSingleton<QuestionModel>();
 builder.Services.AddSingleton<GestionsModels>();
 builder.Services.AddSingleton<Question>();
-builder.Services.AddSingleton<WeatherService>();
-builder.Services.AddSingleton<TicTacToeService>();
+builder.Services.AddSingleton<WeatherModel>();
+builder.Services.AddSingleton<TicTacToeModel>();
 
 var app = builder.Build();
 

@@ -1,11 +1,11 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
-using ProjectsSharp.Models;
+using ProjectsSharp.Service;
 
-namespace ProjectsSharp.Service
+namespace ProjectsSharp.Models
 {
-    public class WeatherService
+    public class WeatherModel
     {
         private readonly string _apiKey = "338b9134b4b0c86afe88c97b28648d6c";
         private readonly HttpClient _client = new HttpClient();

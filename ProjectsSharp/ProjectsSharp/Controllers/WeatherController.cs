@@ -1,18 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectsSharp.Models;
 using ProjectsSharp.Service;
-using ProjectsSharp.Models;
-using System.Threading.Tasks;
 
 namespace ProjectsSharp.Controllers
 {
     public class WeatherController : Controller
     {
-        private readonly WeatherService _weatherService;
+        private readonly WeatherModel _weatherModel;
 
         public WeatherController()
         {
-            _weatherService = new WeatherService();
+            _weatherModel = new WeatherModel();
         }
 
         [HttpGet]
@@ -29,7 +27,7 @@ namespace ProjectsSharp.Controllers
                 return Json(new { error = "Veuillez entrer un nom de ville." });
             }
 
-            WeatherData weatherData = await _weatherService.GetWeatherAsync(request.City);
+            WeatherData weatherData = await _weatherModel.GetWeatherAsync(request.City);
 
             if (weatherData == null || weatherData.CityName == "Erreur")
             {
