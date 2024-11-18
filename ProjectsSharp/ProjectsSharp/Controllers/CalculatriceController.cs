@@ -1,38 +1,51 @@
 using Microsoft.AspNetCore.Mvc;
-namespace ProjectsSharp.Controllers;
+using CalculatriceApp.Models;
+using System.Diagnostics;
 
-[ApiController]
-[Route("api/[controller]")]
-public class CalculatriceController : Controller
+namespace CalculatriceApp.Controllers
 {
-    public IActionResult Index()
+    public class CalculatriceController : Controller
     {
-        return View();
-    }
-    
-    [HttpGet("addition")]
-    public IActionResult Addition(double a, double b)
-    {
-        return Ok(a + b);
-    }
+        private static CalculatriceModel _model = new CalculatriceModel();
 
-    [HttpGet("soustraction")]
-    public IActionResult Soustraction(double a, double b)
-    {
-        return Ok(a - b);
-    }
+        public IActionResult Index()
+        {
+            return View(_model);
+        }
 
-    [HttpGet("multiplication")]
-    public IActionResult Multiplication(double a, double b)
-    {
-        return Ok(a * b);
-    }
+        [HttpPost]
+        public IActionResult Update(string operation, double? value)
+        {
+            Console.WriteLine("Méthode Update appelée"); // Journalisation pour débogage
+            Debug.WriteLine($"Operation reçue : {operation}, Valeur reçue : {value}"); // Autre journalisation
 
-    [HttpGet("division")]
-    public IActionResult Division(double a, double b)
-    {
-        if (b == 0)
-            return BadRequest("Division par zéro non autorisée.");
-        return Ok(a / b);
+            if (operation == "clear")
+            {
+                _model.Clear();
+            }
+            else if (operation == "=")
+            {
+                _model.CurrentValue = _model.Calculate();
+                _model.Operation = null;
+            }
+            else if (!string.IsNullOrEmpty(operation))
+            {
+                _model.PreviousValue = _model.CurrentValue;
+                _model.Operation = operation;
+                _model.CurrentValue = null;
+            }
+            else if (value.HasValue)
+            {
+                _model.CurrentValue = (_model.CurrentValue ?? 0) * 10 + value;
+            }
+
+            return RedirectToAction("Index");
+        }
+        
+        public IActionResult Test()
+        {
+            return Content("Le contrôleur fonctionne correctement");
+        }
+
     }
 }
