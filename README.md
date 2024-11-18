@@ -8,8 +8,8 @@ Chaque application est implémentée avec une architecture MVC (Model-View-Contr
 Prérequis
 
 Avant de lancer le projet, assurez-vous d'avoir les éléments suivants installés :
-```
-.NET SDK 6.0 ou supérieur
+```text
+.NET SDK 7.0 
 Git
 Un éditeur de code (comme Visual Studio Code ou JetBrains Rider)
 SQL Server (ou un autre serveur de base de données compatible avec SQL)
