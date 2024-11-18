@@ -1,7 +1,6 @@
 using ProjectsSharp.Models;
 using Microsoft.EntityFrameworkCore;
 using dotenv.net;
-using ProjectsSharp.Models;
 using ProjectsSharp.Service;
 
 var builder = WebApplication.CreateBuilder(args);

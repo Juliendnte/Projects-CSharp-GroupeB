@@ -38,6 +38,3 @@ function displayWeather(data) {
         <p id="pHumidity"> ${data.humidity}%</p>
     `;
 }
-
-
-
