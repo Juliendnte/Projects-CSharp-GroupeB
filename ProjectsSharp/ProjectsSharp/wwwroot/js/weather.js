@@ -19,19 +19,18 @@
         const weatherData = await response.json();
 
         if (weatherData.error) {
-            document.getElementById('weatherResult').innerHTML = `<p>${weatherData.error}</p>`;
+            document.getElementById('weatherResult').innerHTML = `<p>Ville Inconnue</p>`;
         } else {
             displayWeather(weatherData);
         }
     } catch (error) {
-        document.getElementById('weatherResult').innerHTML = `<p>Erreur : ${error.message}</p>`;
+        document.getElementById('weatherResult').innerHTML = `<p>Ville Inconnue</p>`;
     }
 }
 
 function displayWeather(data) {
     const weatherDiv = document.getElementById('weatherResult');
     weatherDiv.innerHTML = `
-    
         <p id="pTemp">${data.temperature}°C</p>
         <p id="pCity">${data.cityName}</p>
         <p id="pHumidity1">Humidité :</p>
