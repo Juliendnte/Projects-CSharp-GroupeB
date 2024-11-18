@@ -1,32 +1,162 @@
-﻿<div class="container">
-    <!-- Calculatrice -->
+﻿@model CalculatriceApp.Models.CalculatriceModel
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <link rel="stylesheet" href="~/styles.css" asp-append-version="true">
+</head>
+<body>
+<div class="container">
     <div class="calculator">
-        <input type="text" id="result" readonly>
+        <input type="text" id="display" readonly aria-label="Affichage des résultats" value="0">
         <div class="buttons">
-            <button onclick="clearResult()">C</button>
-            <button onclick="appendNumber(7)">7</button>
-            <button onclick="appendNumber(8)">8</button>
-            <button onclick="appendNumber(9)">9</button>
-            <button onclick="setOperation('addition')">+</button>
-            <button onclick="appendNumber(4)">4</button>
-            <button onclick="appendNumber(5)">5</button>
-            <button onclick="appendNumber(6)">6</button>
-            <button onclick="setOperation('soustraction')">-</button>
-            <button onclick="appendNumber(1)">1</button>
-            <button onclick="appendNumber(2)">2</button>
-            <button onclick="appendNumber(3)">3</button>
-            <button onclick="setOperation('multiplication')">*</button>
-            <button onclick="appendNumber(0)">0</button>
-            <button onclick="calculate()">=</button>
-            <button onclick="setOperation('division')">/</button>
+            <button type="button" onclick="setOperation('%')" aria-label="Pourcentage">%</button>
+            <button type="button" onclick="clearEntry()" aria-label="Effacer la dernière entrée">CE</button>
+            <button type="button" onclick="clearAll()" aria-label="Tout effacer">C</button>
+            <button type="button" onclick="deleteLast()" aria-label="Supprimer le dernier caractère">⌫</button>
+
+            <button type="button" onclick="setOperation('1/x')" aria-label="Inverse">1/x</button>
+            <button type="button" onclick="setOperation('square')" aria-label="Carré">x²</button>
+            <button type="button" onclick="setOperation('sqrt')" aria-label="Racine carrée">√</button>
+            <button type="button" onclick="setOperation('/')" aria-label="Diviser">÷</button>
+
+            @for (int i = 7; i <= 9; i++)
+            {
+            <button type="button" onclick="appendNumber(@i)" aria-label="Chiffre @i">@i</button>
+            }
+            <button type="button" onclick="setOperation('*')" aria-label="Multiplier">×</button>
+
+            @for (int i = 4; i <= 6; i++)
+            {
+            <button type="button" onclick="appendNumber(@i)" aria-label="Chiffre @i">@i</button>
+            }
+            <button type="button" onclick="setOperation('-')" aria-label="Soustraire">-</button>
+
+            @for (int i = 1; i <= 3; i++)
+            {
+            <button type="button" onclick="appendNumber(@i)" aria-label="Chiffre @i">@i</button>
+            }
+            <button type="button" onclick="setOperation('+')" aria-label="Additionner">+</button>
+
+            <button type="button" onclick="negate()" aria-label="Inverser le signe">±</button>
+            <button type="button" onclick="appendNumber(0)" aria-label="Zéro">0</button>
+            <button type="button" onclick="appendDecimal()" aria-label="Virgule">,</button>
+            <button type="button" onclick="calculate()" aria-label="Égal">=</button>
         </div>
     </div>
-        
-    <!-- Section pour les derniers calculs -->
+
     <div class="history">
-        <h3>Derniers calculs</h3>
-        <ul id="calculationHistory"></ul>
+        <h3>Historique</h3>
+        <ul id="historyList">
+            <!-- L'historique sera ajouté ici dynamiquement -->
+        </ul>
     </div>
 </div>
 
-<script src="~/js/script.js"></script>
+<script>
+    let currentOperation = null;
+    let currentValue = "";
+    let previousValue = "";
+
+    function appendNumber(number) {
+        currentValue += number;
+        updateDisplay(currentValue);
+    }
+
+    function appendDecimal() {
+        if (!currentValue.includes(".")) {
+            currentValue += ".";
+            updateDisplay(currentValue);
+        }
+    }
+
+    function clearAll() {
+        currentValue = "";
+        previousValue = "";
+        currentOperation = null;
+        updateDisplay("0");
+    }
+
+    function clearEntry() {
+        currentValue = "";
+        updateDisplay("0");
+    }
+
+    function deleteLast() {
+        currentValue = currentValue.slice(0, -1);
+        updateDisplay(currentValue || "0");
+    }
+
+    function setOperation(operation) {
+        if (currentValue) {
+            previousValue = currentValue;
+            currentValue = "";
+        }
+        currentOperation = operation;
+    }
+
+    function calculate() {
+        let result = 0;
+        const prev = parseFloat(previousValue);
+        const current = parseFloat(currentValue);
+
+        switch (currentOperation) {
+            case "+":
+                result = prev + current;
+                break;
+            case "-":
+                result = prev - current;
+                break;
+            case "*":
+                result = prev * current;
+                break;
+            case "/":
+                result = current !== 0 ? prev / current : "Erreur";
+                break;
+            case "sqrt":
+                result = Math.sqrt(current);
+                break;
+            case "square":
+                result = Math.pow(current, 2);
+                break;
+            case "1/x":
+                result = current !== 0 ? 1 / current : "Erreur";
+                break;
+            case "%":
+                result = prev * (current / 100);
+                break;
+            default:
+                result = current;
+                break;
+        }
+
+        if (result !== "Erreur") {
+            addHistory(`${previousValue} ${currentOperation} ${currentValue} = ${result}`);
+        }
+        updateDisplay(result);
+        previousValue = result;
+        currentValue = "";
+        currentOperation = null;
+    }
+
+    function negate() {
+        currentValue = currentValue ? String(parseFloat(currentValue) * -1) : "0";
+        updateDisplay(currentValue);
+    }
+
+    function updateDisplay(value) {
+        document.getElementById("display").value = value;
+    }
+
+    function addHistory(entry) {
+        const historyList = document.getElementById("historyList");
+        const listItem = document.createElement("li");
+        listItem.textContent = entry;
+        historyList.prepend(listItem); // Ajoute au début de la liste
+    }
+</script>
+</body>
+</html>
