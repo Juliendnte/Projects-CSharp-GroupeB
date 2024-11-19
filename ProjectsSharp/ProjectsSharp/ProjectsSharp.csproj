@@ -16,5 +16,6 @@
         </PackageReference>
         <PackageReference Include="MySql.Data" Version="9.1.0" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+        <ProjectReference Include="..\ConvertisseurApp\ConvertisseurApp.csproj" />
     </ItemGroup>
 </Project>

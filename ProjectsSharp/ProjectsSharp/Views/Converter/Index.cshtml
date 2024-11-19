@@ -1,0 +1,40 @@
+namespace ConvertisseurApp.Models
+{
+    public class ConverterModel
+    {
+        public string? ConversionType { get; set; }
+        public double InputValue { get; set; }
+        public double ConvertedValue { get; set; }
+    }
+}
+@model ConvertisseurApp.Models.ConverterModel
+@{
+    ViewData["Title"] = "Convertisseur";
+}
+
+<div class="container">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <p class="text-center">Convertissez des valeurs entre différentes unités !</p>
+
+    <form method="post" action="/Converter/Result" class="card shadow p-4">
+        <div class="mb-3">
+            <label for="value" class="form-label">Valeur :</label>
+            <input type="number" class="form-control" id="value" name="value" step="0.01" placeholder="Entrez la valeur" required>
+        </div>
+        <div class="mb-3">
+            <label for="conversionType" class="form-label">Type de conversion :</label>
+            <select id="conversionType" name="conversionType" class="form-select">
+                <!-- Monnaie -->
+                <option value="Currency">Dollars (USD) → Euros (EUR)</option>
+                <option value="CurrencyInverse">Euros (EUR) → Dollars (USD)</option>
+                <!-- Distance -->
+                <option value="Distance">Miles → Kilomètres</option>
+                <option value="DistanceInverse">Kilomètres → Miles</option>
+                <!-- Poids -->
+                <option value="Weight">Lbs → Kg</option>
+                <option value="WeightInverse">Kg → Lbs</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Convertir</button>
+    </form>
+</div>

@@ -1,0 +1,15 @@
+@model ConvertisseurApp.Models.ConverterModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Résultat";
+}
+
+<div class="container">
+    <h1>Résultat de la conversion</h1>
+    <div class="result">
+        <p>Type de conversion : @Model.ConversionType</p>
+        <p>Valeur entrée : @Model.InputValue</p>
+        <p>Valeur convertie : @Model.ConvertedValue</p>
+    </div>
+    <a href="/Converter/Index" class="btn btn-primary">Faire une autre conversion</a>
+</div>
