@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - ProjectsSharp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/site.css"/>
+    <link rel="stylesheet" href="css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/questions.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/calendar.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/weather.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/Converter.css" asp-append-version="true"/>
 </head>
 <body>
 <header>
@@ -37,13 +38,16 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Weather" asp-action="Index">Weather App</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Converter" asp-action="Index">Convertiseur</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
 <div class="container">
-    <main role="main" class="pb-3">
+    <main role="main" class="pb-3 ">
         @RenderBody()
     </main>
 </div>
