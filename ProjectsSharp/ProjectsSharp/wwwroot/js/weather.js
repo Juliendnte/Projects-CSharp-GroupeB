@@ -19,7 +19,7 @@
         const weatherData = await response.json();
 
         if (weatherData.error) {
-            document.getElementById('weatherResult').innerHTML = `<p>${weatherData.error}</p>`;
+            document.getElementById('weatherResult').innerHTML = `<p>Ville introuvable</p>`;
         } else {
             displayWeather(weatherData);
         }

@@ -1,4 +1,4 @@
-namespace ConvertisseurApp.Models
+namespace ProjectsSharp.Models
 {
     public class ConverterModel
     {
